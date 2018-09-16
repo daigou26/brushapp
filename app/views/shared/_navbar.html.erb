@@ -1,0 +1,20 @@
+<div class="navbar row navbar-dark">
+  <div class="container-fluid d-flex justify-content-between">
+    <%= link_to root_path, class: "btn" do %>
+      <font size="6vm" color="#000000">StartDash</font>
+    <% end %>
+    <% if user_signed_in? %>
+      <div class="dropleft ">
+        <button class="btn" style="outline: none; box-shadow: none;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= image_tag current_user[:image], :class=>"rounded-circle" %>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="">マイベージ</a>
+          <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
+            ログアウト
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
