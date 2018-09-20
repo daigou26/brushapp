@@ -26,21 +26,19 @@
           <%= "URLを入力してください" if @post.errors.messages[:url].any? %>
         </p>
       </div>
-      <!-- <div class="col-12 bg-info">
-        <%= image_tag @post.image.url, id: :image_preview if @post.image?%>
-      </div> -->
+
       <%= image_tag "noimage.png", :id => "image_preview", :size =>'300x300' %>
 
       <div class="col-12">
-        <span class="picture">
-          <%= f.file_field :image, id: :post_image, accept: 'image/jpeg,image/gif,image/png'  %>
+        <span class="image">
+          <%= f.file_field :image, id: :post_image, accept: 'image/jpeg, image/png, image/jpg'  %>
         </span>
         <p class="text-danger">
           <%= @post.errors.messages[:image][0] if @post.errors.messages[:image].any? %>
         </p>
       </div>
 
-      <div class="col-12 mt-5">
+      <div class="col-12 mt-3 mb-5">
         <%= f.submit "Post", class: "btn btn-primary" %>
       </div>
     </div>

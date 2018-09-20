@@ -15,6 +15,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @user, event: :authentication
     else
       print("persisted false")
+      logger.debug("‘Hello world’")
+
       session["devise.#{provider}_data"] = request.env['omniauth.auth']
       redirect_to controller: 'sessions', action: 'new'
     end

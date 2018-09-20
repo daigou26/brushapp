@@ -7,5 +7,8 @@ CarrierWave.configure do |config|
   }
 
   config.fog_directory  = 'startdash'
-  config.cache_storage = :fog
+
+  if Rails.env.production?
+    config.cache_storage = :fog
+  end
 end

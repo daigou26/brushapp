@@ -1,12 +1,12 @@
 class Post < ApplicationRecord
   belongs_to :user
-  mount_uploader :picture, ImageUploader
+  mount_uploader :image, ImageUploader
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
   validate :title_validate
   validate :content_validate
   validates :url, format: /\A#{URI::regexp(%w(http https))}\z/
-  validate  :image_size
+  validate :image_size
 
   private
 
@@ -27,7 +27,7 @@ class Post < ApplicationRecord
     end
 
     def image_size
-      if image == nil
+      if image.url == nil
         errors.add(:image, "画像を指定してください")
       elsif image.size > 1.megabytes
         errors.add(:image, "1MB以下の画像を指定してください")
