@@ -1,0 +1,7 @@
+<li id="post-<%= post.id %>">
+  <%= link_to user_post_path(:user_id => current_user[:nickname], :id => post.id), class: "btn" do %>
+    <%= image_tag post.image.url, :size =>'50x50' if post.image? %>
+    <span class="title"><%= post.title %></span>
+    <span class="content"><%= post.content %></span>
+  <% end %>
+</li>
