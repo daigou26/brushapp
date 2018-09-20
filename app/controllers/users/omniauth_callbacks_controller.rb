@@ -3,6 +3,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_from :twitter
   end
 
+  def failure
+    redirect_to root_path
+  end
+
   private
   def callback_from(provider)
     provider = provider.to_s
