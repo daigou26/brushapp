@@ -1,42 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
+<div class="container-fluid">
+  <!-- navbar -->
+  <%= render 'shared/navbar' %>
+  <hr />
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Start Dash</title>
-
-  </head>
-
-  <body>
-    <div class="container-fluid">
-      <!-- navbar -->
-      <%= render 'shared/navbar' %>
-      <hr />
-
-      <div class="row">
-        <div class="container-fluid bg-white" style="margin-top: 200px; margin-bottom: 200px;">
-          <h1 class="text-center font-weight-bold" style="font-size: 60px;">SNSで作ったものを公開しよう！</h1>
-          <p class="pb-5 text-center" style="font-size: 20px; padding-top: 100px">
-            StartDashは自分が作ったものをSNSで簡単にシェア、<br />フィードバック管理ができるサービスです。
-          </p>
-          <div class="text-center">
-            <% if user_signed_in? %>
-              <%= link_to "投稿する", new_user_post_path(:user_id => current_user[:nickname]), class: "btn btn-info btn-lg" %>
-            <% else %>
-              <%= link_to user_twitter_omniauth_authorize_path, class: "btn btn-info btn-lg" do %>
-                Twitterでログイン
-              <% end %>
-            <% end %>
-          </div>
+  <% if user_signed_in? %>
+    <div class="row">
+      <div class="container-fluid bg-white" style="margin-top: 100px; margin-bottom: 100px;">
+        <h1 class="text-center font-weight-bold" style="font-size: 60px;">SNSで作ったものを公開しよう！</h1>
+        <div class="text-center">
+          <%= link_to "投稿する", new_user_post_path(:user_id => current_user[:nickname]), class: "btn btn-info btn-lg" %>
         </div>
       </div>
+    </div>
 
-      <hr />
-
+    <hr />
+    <% if @feed_items.any?  %>
+      <ol class="posts">
+        <%= render @feed_items %>
+      </ol>
+      <%= will_paginate @feed_items %>
+    <% else %>
       <div class="row" style="padding-top: 100px; padding-bottom: 100px; padding-left: 100px; padding-right: 100px;">
         <div class="col-sm-4 col-xs-12">
           <div class="container text-center">
@@ -77,6 +60,64 @@
         </div>
 
       </div>
+    <% end %>
+  <% else %>
+    <div class="row">
+      <div class="container-fluid bg-white" style="margin-top: 200px; margin-bottom: 200px;">
+        <h1 class="text-center font-weight-bold" style="font-size: 60px;">SNSで作ったものを公開しよう！</h1>
+        <p class="pb-5 text-center" style="font-size: 20px; padding-top: 100px">
+          StartDashは自分が作ったものをSNSで簡単にシェア、<br />フィードバック管理ができるサービスです。
+        </p>
+        <div class="text-center">
+          <%= link_to user_twitter_omniauth_authorize_path, class: "btn btn-info btn-lg" do %>
+            Twitterでログイン
+          <% end %>
+        </div>
+      </div>
     </div>
-  </body>
-</html>
+
+    <hr />
+
+    <div class="row" style="padding-top: 100px; padding-bottom: 100px; padding-left: 100px; padding-right: 100px;">
+      <div class="col-sm-4 col-xs-12">
+        <div class="container text-center">
+          <img src="assets/release.png" class="rounded mb-3" alt="...">
+          <h4 class="font-weight-bold mt-3 mb-3">SNSで作ったものを公開</h4>
+          <p class="pl-4 pr-4">SNSで公開して多くの人に知ってもらいましょう</p>
+        </div>
+      </div>
+      <div class="col-sm-4 col-xs-12">
+        <div class="container text-center">
+          <img src="assets/star.png" class="rounded mb-3" alt="...">
+          <h4 class="font-weight-bold mt-3 mb-3">フィードバックをもらおう</h4>
+          <p class="pl-4 pr-4">サービス、アプリを見た人からフィードバックをもらえるかもしれません</p>
+        </div>
+      </div>
+      <div class="col-sm-4 col-xs-12">
+        <div class="container text-center">
+          <img src="assets/talk.png" class="rounded mb-3" alt="...">
+          <h4 class="font-weight-bold mt-3 mb-3">ユーザーと繋がろう</h4>
+          <p class="pl-4 pr-4">熱心なユーザーと繋がってサービスをより良いものにしましょう</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row p-5">
+      <div class="mx-auto">
+        <ul class="list-inline quicklinks">
+          <li class="list-inline-item">
+            <a href="#" style="color: #aaaaaa;">Privacy Policy</a>
+          </li>
+          <li class="list-inline-item" style="color: #aaaaaa;">
+            /
+          </li>
+          <li class="list-inline-item">
+            <a href="#" style="color: #aaaaaa;">利用規約</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  <% end %>
+
+</div>
