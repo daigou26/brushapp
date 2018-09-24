@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :user
+  has_many :feedbacks, dependent: :destroy
   mount_uploader :image, ImageUploader
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
@@ -7,6 +8,10 @@ class Post < ApplicationRecord
   validate :content_validate
   validates :url, format: /\A#{URI::regexp(%w(http https))}\z/
   validate :image_size
+
+  def feed
+    Feedback.where("post_id = ?", id)
+  end
 
   private
 

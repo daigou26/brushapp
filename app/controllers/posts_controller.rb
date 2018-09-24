@@ -3,12 +3,11 @@ class PostsController < ApplicationController
   before_action :correct_user,   only: :destroy
 
   def create
-    @post = current_user.posts.build(post_params)    
+    @post = current_user.posts.build(post_params)
     if @post.save
-      flash[:success] = "post created!"
-      redirect_to user_post_path(:user_id => current_user[:nickname], :id => @post[:id])
+      redirect_to controller: 'feedbacks', action: 'new', nickname: current_user[:nickname], id: @post[:id]
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -18,23 +17,12 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
-  def index
-  end
-
   def new
-    if current_user[:nickname] == params[:user_id]
-      @post = current_user.posts.build if user_signed_in?
+    if current_user[:nickname] == params[:nickname]
+      @post = current_user.posts.build
     else
-     redirect_to root_path
-   end
-  end
-
-  def show
-    if current_user[:nickname] == params[:user_id]
-      @post = Post.find(params[:id])
-    else
-     redirect_to root_path
-   end
+      redirect_to root_path
+    end
   end
 
   private
