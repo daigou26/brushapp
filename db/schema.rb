@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_13_130736) do
+ActiveRecord::Schema.define(version: 2018_09_20_124353) do
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.text "content"
+    t.integer "rating"
+    t.integer "user_id"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_feedbacks_on_post_id"
+    t.index ["user_id"], name: "index_feedbacks_on_user_id"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"

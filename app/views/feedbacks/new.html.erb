@@ -1,0 +1,92 @@
+<div class="container-fluid">
+  <!-- navbar -->
+  <%= render 'shared/navbar' %>
+  <hr />
+  <div class="row">
+    <h3 class="text-center font-weight-bold" style="font-size: 30px;">
+      <%= @post.title %>
+    </h3>
+  </div>
+  <div class="row">
+    <p class="text-center" style="font-size: 30px;">
+      <%= @post.content %>
+    </p>
+  </div>
+  <div class="row">
+    <p class="text-center" style="font-size: 30px;">
+      <%= @post.url %>
+    </p>
+  </div>
+  <div class="row">
+    <%= image_tag @post.image.url, :size =>'100x100' if @post.image? %>
+  </div>
+
+  <% if user_signed_in? %>
+    <% if @post.user_id == current_user.id %>
+      <div class="row mt-5">
+        <%= link_to "Tweet", "https://twitter.com/intent/tweet?text="+u("#{@post.content}\n")+"&url="+u("#{@post.url}"), :class => "btn btn-info" %>
+      </div>
+
+      <% if @feed_items.any?  %>
+        <ol class="feedbacks">
+          <%= render @feed_items %>
+        </ol>
+        <%= will_paginate @feed_items %>
+      <% end %>
+    <% else %>
+      <div class="row">
+        <h3 class="text-center" style="font-size: 20px;">
+          フィードバック
+        </h3>
+      </div>
+      <%= form_for @feedback, :url => { :action => :create } do |f| %>
+        <div class="row">
+          <div class="field" id="star">
+            <%= f.hidden_field :rating, id: :post_rating %>
+            <p class="text-danger">
+              <%= @feedback.errors.messages[:rating][0] if @feedback.errors.messages[:rating].any? %>
+            </p>
+          </div>
+          <div class="col-12 form-group">
+            <label>content</label>
+            <%= f.text_area :content, class: "form-control", placeholder: "Compose new micropost..." %>
+            <p class="text-danger">
+              <%= @feedback.errors.messages[:content][0] if @feedback.errors.messages[:content].any? %>
+            </p>
+          </div>
+          <div class="col-12 mt-3 mb-5">
+            <%= f.submit "フィードバックを送る", class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <div class="row">
+      <h3 class="text-center" style="font-size: 20px;">
+        評価
+      </h3>
+    </div>
+    <div class="row">
+      <h3 class="text-center" style="font-size: 20px;">
+        フィードバック
+      </h3>
+    </div>
+    <div class="row">
+      <%= link_to user_twitter_omniauth_authorize_path, class: "btn btn-info btn-lg" do %>
+        Twitterでログイン
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+
+<script>
+$('#star').raty({
+  size     : 36,
+  starOff: '/assets/star-off.png',
+  starOn : '/assets/star-on.png',
+  click: function(score, e) {
+    $("#post_rating").val(score)
+  }
+});
+</script>

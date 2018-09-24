@@ -1,0 +1,20 @@
+<li id="feedback-<%= feedback.id %>">
+  <%= link_to root_path, class: "btn" do %>
+    <%= image_tag User.find(feedback.user_id).image, :size =>'50x50' if User.find(feedback.user_id).image? %>
+    <span class="user_name"><%= User.find(feedback.user_id).name %></span>
+    <div id='star_rating'></div>
+    <span class="rating">rating:<%= feedback.rating %></span>
+    <span class="content"><%= feedback.content %></span>
+  <% end %>
+</li>
+
+<script>
+$('#star_rating').raty({
+  size: 36,
+  number: 5,
+  starOff: '/assets/star-off.png',
+  starOn: '/assets/star-on.png',
+  readOnly: true,
+  score: <%= feedback.rating %>
+});
+</script>
