@@ -3,8 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.3.7'
 
-gem 'will_paginate'
-gem 'bootstrap-will_paginate'
+gem 'kaminari'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'twitter'

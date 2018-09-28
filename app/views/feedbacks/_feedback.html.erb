@@ -1,19 +1,25 @@
-<li id="feedback-<%= feedback.id %>">
-  <%= link_to root_path, class: "btn" do %>
-    <%= image_tag User.find(feedback.user_id).image, :size =>'50x50' if User.find(feedback.user_id).image? %>
-    <span class="user_name"><%= User.find(feedback.user_id).name %></span>
-    <div id='star_rating'></div>
-    <span class="rating">rating:<%= feedback.rating %></span>
-    <span class="content"><%= feedback.content %></span>
+<div class="text-left mt-2">
+  <div class="d-flex justify-content-between">
+    <div>
+      <%= link_to "https://twitter.com/#{User.find(feedback.user_id).nickname}", :class => 'btn', :style => 'padding: 0px;'  do %>
+        <img src="<%= User.find(feedback.user_id).image %>" class="rounded-circle" id="profile-image">
+      <% end %>
+      <span class="align-middle" id="feedback-username"><%= User.find(feedback.user_id).name %></span>
+    </div>
+    <div class="my-auto" id='star_rating_<%= feedback.id %>'></div>
+  </div>
+  <% if feedback.content? %>
+    <p class="content mt-2" id="feedback-content"><%= feedback.content %></p>
   <% end %>
-</li>
+
+</div>
 
 <script>
-$('#star_rating').raty({
-  size: 36,
+$('#star_rating_<%= feedback.id %>').raty('destroy');
+$('#star_rating_<%= feedback.id %>').raty({
   number: 5,
-  starOff: '/assets/star-off.png',
-  starOn: '/assets/star-on.png',
+  starOff: '/assets/star-off-10.png',
+  starOn: '/assets/star-on-10.png',
   readOnly: true,
   score: <%= feedback.rating %>
 });
