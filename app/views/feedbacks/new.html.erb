@@ -20,8 +20,6 @@
           <% end %>
         <% end %>
       </div>
-
-
     </div>
     <img src="<%= @post.image.url %>" class="img-fluid">
     <div class="text-left">
@@ -56,7 +54,7 @@
           <h4 class="mb-3">フィードバック</h4>
           <%= render @feed_items %>
         </div>
-        <%= will_paginate @feed_items %>
+        <%= paginate @feed_items %>
       <% end %>
     <% else %>
       <%= render 'feedbacks/form' %>
