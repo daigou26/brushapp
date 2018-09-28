@@ -10,7 +10,7 @@ class Feedback < ApplicationRecord
   private
     def empty_validate
       if rating == nil && content.length == 0
-        errors.add(:rating, "評価またはフィードバックを入力してください")
+        errors.add(:content, "評価またはフィードバックを入力してください")
       end
     end
 

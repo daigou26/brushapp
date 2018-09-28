@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get '/users/:nickname/posts/new' => "posts#new"
   post '/users/:nickname/posts/new' => "posts#create"
+  get '/users/:nickname/posts/:id/edit' => "posts#edit"
+  patch '/users/:nickname/posts/:id/edit' => "posts#update"
   get '/users/:nickname/posts/:id' => "feedbacks#new"
   post '/users/:nickname/posts/:id' => "feedbacks#create"
   root 'top#index'
@@ -10,7 +12,7 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: [] do
-    resources :posts, only: [:new, :create, :destroy]
+    resources :posts, only: [:new, :create, :edit, :update, :destroy]
     resources :feedbacks, only: [:new, :create, :show]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

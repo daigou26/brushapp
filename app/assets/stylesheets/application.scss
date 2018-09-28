@@ -1,2 +1,201 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+
+.btn:focus,.btn:active {
+   outline: none !important;
+   box-shadow: none;
+}
+
+div#footer { margin-top: 50px;}
+a#navbarDropdownMenuLink { padding: 0px;}
+div#navbar-post-button { padding: 0px; font-size: 14px; color: #555555;}
+
+@media screen and (max-width: 767px) {
+    h1 { font-size: 22pt;}
+    h2 { font-size: 18pt;}
+    h3 { font-size: 16pt;}
+    h4 { font-size: 14pt;}
+
+    // shared
+    img#profile-image {width: 30px; height: 30px;}
+    div#footer a { font-size: 12px;}
+
+    // navbar
+    div#navbar-post-button { margin-right: 20px;}
+
+    // top-page
+    div#main-container { margin-top: 50px; margin-bottom: 100px;}
+    div#dashboard-main-container {margin-top: 50px; margin-bottom: 50px;}
+    p#description { font-size: 12pt; margin-top: 50px;}
+    div#main-container-button { font-size: 14px; margin-top: 50px;}
+    div#feature-item { margin-bottom: 50px;}
+    div#feature-item p { font-size: 14px;}
+    div#feature-item img {width: 65px; height: 65px;}
+    div#feature-item h4 {margin-top: 20px; margin-bottom: 16px;}
+    div#post-feed-item { margin-bottom: 20px;}
+    div#post-feed-item span#post-title {
+      width:230px;
+      display:inline-block;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      -webkit-text-overflow:ellipsis;
+      -o-text-overflow: ellipsis;
+    }
+
+    // post-page
+    div#title-form { margin-top: 25px;}
+    div#content-form { margin-top: 25px;}
+    div#url-form { margin-top: 25px; margin-bottom: 25px;}
+
+    // post-detail-page
+    div#post-detail-container { margin-top: 10px;}
+    div#post-detail-container div#edit-post { font-size: 12px;}
+    div#post-detail-container span#post-title { font-size: 22px;}
+    div#post-detail-container span#post-content { font-size: 16px;}
+    div#post-detail-container div#url-button { font-size: 12px; margin-top: 20px;}
+    div#post-detail-tweet-button { margin-top: 20px; font-size: 14px;}
+
+    div#send-feedback-container { margin-top: 50px;}
+    p#need-login { font-size: 12px;}
+    div#twitter-login-button { font-size: 14px;}
+    div#feedback-feed-container { margin-top: 50px;}
+    p#feedback-content { font-size: 12px; border-radius: 15px; border: 1px solid #cccccc; padding: 10px;}
+    span#feedback-username {
+      font-size: 12px;
+      width:180px;
+      display:inline-block;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      -webkit-text-overflow:ellipsis;
+      -o-text-overflow: ellipsis;
+    }
+}
+
+@media screen and (min-width: 768px){
+    h1 { font-size: 24pt;}
+    h2 { font-size: 18pt;}
+    h3 { font-size: 16pt;}
+    h4 { font-size: 16pt;}
+
+    // shared
+    img#profile-image {width: 30px; height: 30px;}
+
+    // navbar
+    div#navbar-post-button { margin-right: 50px;}
+
+    // top-page
+    div#main-container { margin-top: 50px; margin-bottom: 100px;}
+    div#dashboard-main-container {margin-top: 100px; margin-bottom: 100px;}
+    p#description { font-size: 12pt; margin-top: 50px;}
+    div#main-container-button { font-size: 20px; margin-top: 50px;}
+    div#feature-item { margin-bottom: 50px;}
+    div#feature-item img {width: 75px; height: 75px;}
+    div#feature-item h4 {margin-top: 20px; margin-bottom: 16px;}
+    div#post-feed-item span#post-title {
+      font-size: 18px;
+      width:230px;
+      display:inline-block;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      -webkit-text-overflow:ellipsis;
+      -o-text-overflow: ellipsis;
+    }
+
+    // post-page
+    div#title-form { margin-top: 50px;}
+    div#content-form { margin-top: 25px;}
+    div#url-form { margin-top: 25px; margin-bottom: 50px;}
+
+    // post-detail-page
+    div#post-detail-container { margin-top: 25px; max-width: 600px;}
+    div#post-detail-container span#post-title {
+       font-size: 26px;
+     }
+    div#post-detail-container span#post-content {
+      font-size: 20px;
+    }
+    div#post-detail-container div#url-button { margin-top: 20px;}
+    div#post-detail-tweet-button { margin-top: 20px; width: 150px;}
+
+    div#send-feedback-container { margin-top: 75px; max-width: 600px;}
+    div#feedback-feed-container { margin-top: 100px; max-width: 600px;}
+    p#feedback-content { border-radius: 15px; border: 1px solid #cccccc; padding: 20px; width: 580px;}
+    span#feedback-username {
+      width:300px;
+      display:inline-block;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      -webkit-text-overflow:ellipsis;
+      -o-text-overflow: ellipsis;
+    }
+}
+
+@media screen and (min-width: 992px){
+    h1 { font-size: 40pt;}
+    h2 { font-size: 34pt;}
+    h3 { font-size: 24pt;}
+    h4 { font-size: 18pt;}
+
+    // shared
+    img#profile-image {width: 40px; height: 40px;}
+
+    // navbar
+    div#navbar-post-button { margin-right: 50px;}
+
+    // top-page
+    div#main-container { margin-top: 100px; margin-bottom: 200px;}
+    div#dashboard-main-container {margin-top: 100px; margin-bottom: 100px;}
+    div#dashboard-main-container h1 { font-size: 34px;}
+    p#description { font-size: 16pt; margin-top: 100px;}
+    div#main-container-button { font-size: 20px; margin-top: 50px;}
+    div#feature-item img {width: 75px; height: 75px;}
+    div#feature-item h4 {margin-top: 48px; margin-bottom: 20px;}
+    div#post-feed-item { margin-bottom: 20px;}
+    div#post-feed-item span#post-title {
+      font-size: 18px;
+      width:230px;
+      display:inline-block;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      -webkit-text-overflow:ellipsis;
+      -o-text-overflow: ellipsis;
+    }
+
+    // post-page
+    div#title-form { margin-top: 50px;}
+    div#content-form { margin-top: 25px;}
+    div#url-form { margin-top: 25px; margin-bottom: 50px;}
+    div#post-button { font-size: 20px; margin-bottom: 50px;}
+
+    // post-detail-page
+    div#post-detail-container { margin-top: 25px; max-width: 600px;}
+    div#post-detail-container span#post-title {
+      font-size: 26px;
+      word-break: break-all;
+    }
+    div#post-detail-container span#post-content {
+      font-size: 20px;
+      word-break: break-all;
+    }
+    div#post-detail-container div#url-button { margin-top: 20px;
+    }
+    div#post-detail-tweet-button { margin-top: 20px; width: 150px;}
+
+    div#send-feedback-container { margin-top: 75px; max-width: 600px;}
+    div#feedback-feed-container { margin-top: 100px; max-width: 600px;}
+    p#feedback-content { border-radius: 15px; border: 1px solid #cccccc; padding: 20px; width: 580px;}
+    span#feedback-username {
+      width:300px;
+      display:inline-block;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      -webkit-text-overflow:ellipsis;
+      -o-text-overflow: ellipsis;
+    }
+}

@@ -1,20 +1,29 @@
-<div class="navbar row navbar-dark">
+<nav class="navbar row navbar-dark bg-light">
   <div class="container-fluid d-flex justify-content-between">
-    <%= link_to root_path, class: "btn" do %>
-      <font size="6vm" color="#000000">StartDash</font>
-    <% end %>
+    <a class="navbar-brand text-dark" href="/">
+      <h3 class="my-auto">StartDash</h3>
+    </a>
+
     <% if user_signed_in? %>
-      <div class="dropleft ">
-        <button class="btn" style="outline: none; box-shadow: none;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= image_tag current_user[:image], :class=>"rounded-circle" %>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="">マイベージ</a>
-          <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
-            ログアウト
-          <% end %>
+      <div class="btn-group">
+        <%= link_to new_user_post_path(:user_id => current_user[:nickname]), :class => 'my-auto' do %>
+          <div class="btn font-weight-bold" id="navbar-post-button">
+            投稿する
+          </div>
+        <% end %>
+        <div class="nav-item dropdown">
+          <a class="nav-link btn" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="<%= current_user[:image] %>" class="rounded-circle" id="profile-image">
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="right: 0; left: auto;">
+            <a class="dropdown-item" href="">マイベージ</a>
+            <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
+              ログアウト
+            <% end %>
+          </div>
         </div>
       </div>
+
     <% end %>
   </div>
-</div>
+</nav>

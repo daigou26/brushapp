@@ -17,7 +17,7 @@ class Post < ApplicationRecord
 
     def title_validate
       if title.length == 0
-        errors.add(:title, "タイトルを入力してください")
+        errors.add(:title, "サービス・アプリ名を入力してください")
       elsif title.length > 40
         errors.add(:title, "40文字以内で入力してください")
       end
@@ -25,7 +25,7 @@ class Post < ApplicationRecord
 
     def content_validate
       if content.length == 0
-        errors.add(:content, "概要を入力してください")
+        errors.add(:content, "説明を入力してください")
       elsif content.length > 140
         errors.add(:content, "140文字以内で入力してください")
       end

@@ -7,7 +7,7 @@ class FeedbacksController < ApplicationController
       if current_user.posts.find_by(id: params[:id]) == nil
         @feedback = current_user.feedbacks.build
       else
-        @feed_items = @post.feed.paginate(page: params[:page])
+        @feed_items = @post.feed.paginate(page: params[:page], :per_page => 3)
       end
     end
   end
