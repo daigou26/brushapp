@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_20_124353) do
+ActiveRecord::Schema.define(version: 2018_09_28_230327) do
 
   create_table "feedbacks", force: :cascade do |t|
     t.text "content"
@@ -31,6 +31,10 @@ ActiveRecord::Schema.define(version: 2018_09_20_124353) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "rating"
+    t.integer "rating_count"
+    t.integer "review_count"
+    t.integer "new_feedback_count"
     t.index ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end

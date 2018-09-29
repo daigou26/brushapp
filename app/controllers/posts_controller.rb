@@ -20,6 +20,10 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    @post.new_feedback_count = 0
+    @post.rating_count = 0
+    @post.review_count = 0
+    @post.rating = 0
     if @post.save
       redirect_to controller: 'feedbacks', action: 'new', nickname: current_user[:nickname], id: @post[:id]
     else
