@@ -4,7 +4,19 @@
     <div class="text-left">
       <span class="text-dark " id="post-title"><%= post.title %></span>
     </div>
-    <div class="text-left" id='star_rating_<%= post.id %>'></div>
+    <div class="text-left">
+      <% if post.rating != nil && post.rating != 0 %>
+        <span id="rating"><%= post.rating.round(1) %></span>
+      <% end %>
+      <span id='star_rating_<%= post.id %>'></span>
+      <span id="rating-count">
+        <% if post.rating_count == nil %>
+          0
+        <% else %>
+          <%= post.rating_count %>
+        <% end %>
+      </span>
+    </div>
   <% end %>
 </div>
 
@@ -16,6 +28,6 @@ $('#star_rating_<%= post.id %>').raty({
   starOff: '/assets/star-off-10.png',
   starOn: '/assets/star-on-10.png',
   readOnly: true,
-  score: 3
+  score: <%= post.rating.round %>
 });
 </script>
