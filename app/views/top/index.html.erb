@@ -22,7 +22,7 @@
           <div class="row align-self-stretch">
             <%= render @feed_items %>
           </div>
-          <%= paginate @feed_items %> 
+          <%= paginate @feed_items %>
         </div>
 
       <% else %>
@@ -58,7 +58,7 @@
         <div class="container-fluid bg-white" id="main-container">
           <h1 class="text-center font-weight-bold">作ったものを<br />SNSで共有しよう！</h1>
           <p class="w-75 pb-5 text-center mx-auto" id="description">
-            StartDashは自分が作ったものをSNSで簡単にシェア、フィードバック管理ができるサービスです。
+            BrushAppは自分が作ったものをSNSで簡単にシェア、フィードバック管理ができるサービスです。
           </p>
           <div class="text-center">
             <%= link_to user_twitter_omniauth_authorize_path do %>
