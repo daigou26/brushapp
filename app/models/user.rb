@@ -1,13 +1,18 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :feedbacks, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
-  
+
   def feed
     Post.where("user_id = ?", id)
+  end
+
+  def notification_feed
+    Notification.where("user_id = ?", id)
   end
 
   def self.find_for_oauth(auth)
