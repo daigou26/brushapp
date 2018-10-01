@@ -46,7 +46,7 @@
                 <% end %>
                 <hr class="m-2" />
               <% end %>
-              <%= link_to root_path, class: "dropdown-item text-center" do %>
+              <%= link_to user_notifications_path(:user_id => current_user[:nickname]), class: "dropdown-item text-center" do %>
                 <span style="font-size: 12px;">
                   通知一覧を見る
                 </span>

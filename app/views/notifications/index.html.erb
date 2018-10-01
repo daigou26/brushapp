@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <%= render 'shared/navbar' %>
+
+  <% if @feed_items.any?  %>
+    <div class="container" id="notification-feed-container">
+      <h4 class="mb-3">通知一覧</h4>
+      <%= render @feed_items %>
+    </div>
+    <%= paginate @feed_items %>
+  <% end %>
+
+  <%= render 'shared/footer' %>
+</div>

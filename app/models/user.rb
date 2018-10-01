@@ -12,7 +12,7 @@ class User < ApplicationRecord
   end
 
   def notification_feed
-    Notification.where("user_id = ?", id)
+    Notification.where("user_id = ?", id).order(created_at: :desc)
   end
 
   def self.find_for_oauth(auth)
