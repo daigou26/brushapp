@@ -11,6 +11,51 @@
             投稿する
           </div>
         <% end %>
+
+        <div class="nav-item dropdown my-auto">
+          <a class="nav-link" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <% if current_user.notifications.where("unread = ?", true).count == 0 %>
+              <span class="badge badge-light btn" style="border-color: #1EA1B3; border-width: 2px;" id="notification-button">
+                <span style="color: #1EA1B3;">
+                  <%= current_user.notifications.where("unread = ?", true).count %>
+                </span>
+              </span>
+            <% else %>
+              <span class="badge badge-danger btn" id="notification-button">
+                <%= current_user.notifications.where("unread = ?", true).count %>
+              </span>
+            <% end %>
+          </a>
+          <% if current_user.notifications.count != 0 %>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="right: 0; left: auto; width: 300px;">
+              <% current_user.notification_feed.order(created_at: :desc).limit(5).each do |notification| %>
+                <%= link_to user_post_path(:user_id => current_user[:nickname], :id => notification.post_id), class: "dropdown-item" do %>
+                  <img src="<%= User.find(notification.feedback_user_id).image %>" class="rounded-circle align-top" id="profile-image">
+                  <div id="notification-text">
+                      <span class="align-top" id="content">
+                        <% if notification.notification_type == "feedback" %>
+                          <%= User.find(notification.feedback_user_id).name %>があなたの投稿にフィードバックを送りました。
+                        <% elsif notification.notification_type == "rating" %>
+                          <%= User.find(notification.feedback_user_id).name %>があなたの投稿を評価しました。
+                        <% else %>
+                          <%= User.find(notification.feedback_user_id).name %>があなたの投稿にレビューを送りました。
+                        <% end %>
+                      </span>
+                    <div id="timestamp"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></div>
+                  </div>
+                <% end %>
+                <hr class="m-2" />
+              <% end %>
+              <%= link_to user_notifications_path(:user_id => current_user[:nickname]), class: "dropdown-item text-center" do %>
+                <span style="font-size: 12px;">
+                  通知一覧を見る
+                </span>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+
         <div class="nav-item dropdown">
           <a class="nav-link btn" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img src="<%= current_user[:image] %>" class="rounded-circle" id="profile-image">

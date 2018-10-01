@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_28_230327) do
+ActiveRecord::Schema.define(version: 2018_09_30_080656) do
 
   create_table "feedbacks", force: :cascade do |t|
     t.text "content"
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 2018_09_28_230327) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_feedbacks_on_post_id"
     t.index ["user_id"], name: "index_feedbacks_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "post_id"
+    t.boolean "unread"
+    t.string "notification_type"
+    t.string "feedback_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|

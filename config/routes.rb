@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :users, only: [] do
     resources :posts, only: [:new, :create, :edit, :update, :destroy]
     resources :feedbacks, only: [:new, :create, :show]
+    resources :notifications, only: [:index]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
