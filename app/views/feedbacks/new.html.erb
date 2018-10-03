@@ -47,14 +47,14 @@
     <% end %>
 
     <div class="d-flex justify-content-between">
-      <%= link_to @post.url do %>
+      <%= link_to @post.url, :target=>["_blank"] do %>
         <div class="btn btn-outline-info" id="url-button">
           サービス・アプリのページへ
         </div>
       <% end %>
       <% if user_signed_in? %>
         <% if @post.user_id == current_user.id %>
-          <%= link_to "https://twitter.com/intent/tweet?text="+u("#{@post.content}\n")+"&url="+u("#{@post.url}") do %>
+          <%= link_to "https://twitter.com/intent/tweet?text="+u("#{@post.content}\n")+"&url="+u("#{@post.url}"), :target=>["_blank"] do %>
             <div class="btn btn-info" id="post-detail-tweet-button">
               Twitterに投稿
             </div>
@@ -79,9 +79,6 @@
   <% else %>
     <%= render 'feedbacks/form' %>
   <% end %>
-
-  <%= render 'shared/footer' %>
-
 </div>
 
 
