@@ -4,20 +4,10 @@
 
   <div class="container-fluid" id="top-page">
     <% if user_signed_in? %>
-      <div class="row">
-        <div class="container-fluid bg-white" id="dashboard-main-container">
-          <h1 class="text-center font-weight-bold">作ったものを<br />SNSで共有しよう！</h1>
-          <div class="text-center">
-            <%= link_to new_user_post_path(:user_id => current_user[:nickname]) do %>
-              <div class="btn btn-info" id="main-container-button">
-                投稿する
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-
       <% if @feed_items.any?  %>
+        <h4 class="ml-3 mt-5 mb-5">
+          Dashboard
+        </h4>
         <div class="container-fluid">
           <div class="row align-self-stretch">
             <%= render @feed_items %>
@@ -26,6 +16,18 @@
         </div>
 
       <% else %>
+        <div class="row">
+          <div class="container-fluid bg-white" id="dashboard-main-container">
+            <h1 class="text-center font-weight-bold">作ったものを<br />SNSで共有しよう！</h1>
+            <div class="text-center">
+              <%= link_to new_user_post_path(:user_id => current_user[:nickname]) do %>
+                <div class="btn btn-info" id="main-container-button">
+                  投稿する
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
         <hr />
         <div class="container">
           <div class="row justify-content-center" id="feature-section">
