@@ -1,6 +1,18 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex: 1;
+}
+
 .btn:focus,.btn:active {
    outline: none !important;
    box-shadow: none;
@@ -207,6 +219,11 @@ span#rating-count { margin-left: 5px; font-size: 12px; color: #888888;}
     // notification-page
     div#notification-feed-container { margin-top: 50px; max-width: 600px;}
     div#notification-page-text { max-width: 400px;}
+
+    // privacy_policy
+    div#privacy-policy-container { margin-top: 50px; max-width: 600px;}
+    // terms
+    div#terms-container { margin-top: 50px; max-width: 600px;}
 }
 
 @media screen and (min-width: 992px){
@@ -297,4 +314,10 @@ span#rating-count { margin-left: 5px; font-size: 12px; color: #888888;}
     // notification-page
     div#notification-feed-container { margin-top: 50px; max-width: 600px;}
     div#notification-page-text { max-width: 400px;}
+
+    // privacy_policy
+    div#privacy-policy-container { margin-top: 50px; max-width: 600px;}
+    // terms
+    div#terms-container { margin-top: 50px; max-width: 600px;}
+
 }
