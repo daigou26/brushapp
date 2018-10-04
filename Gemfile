@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.3.7'
 
+gem 'meta-tags'
 gem 'kaminari'
 gem 'carrierwave'
 gem 'mini_magick'

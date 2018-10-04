@@ -10,6 +10,9 @@
         </div>
         <div class="col-12 form-group mt-3">
           <%= f.text_area :content, class: "form-control", style: "height: 200px;", placeholder: "レビューを入力してください..." %>
+          <p class="text-secondary">
+            評価またはレビューのどちらかを入力していれば送信できます。
+          </p>
           <p class="text-danger">
             <%= @feedback.errors.messages[:content][0] if @feedback.errors.messages[:content].any? %>
           </p>

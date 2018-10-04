@@ -1,3 +1,5 @@
+<% set_meta_tags title: @post.title, description: @post.content, og: { url: 'https://brushapp.me', title: @post.title, description: @post.content, image: @post.image.url } %>
+
 <div class="container-fluid">
   <%= render 'shared/navbar' %>
 
@@ -43,6 +45,13 @@
             <% end %>
           </span>
         </div>
+      <% else %>
+        <p class="mt-4 text-secondary m-0" id="rating-count">
+          <% if @post.rating_count != nil && @post.rating_count != 0 %>
+            現在<%= @post.rating_count %>人が評価しています
+          <% end %>
+        </p>
+
       <% end %>
     <% end %>
 
