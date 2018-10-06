@@ -97,8 +97,8 @@ $('#star_rating').raty('destroy');
 $('#star_rating').raty({
   size: 20,
   number: 5,
-  starOff: '/assets/star-off-10.png',
-  starOn: '/assets/star-on-10.png',
+  starOff: '<%= asset_path "star-off-10.png" %>',
+  starOn: '<%= asset_path "star-on-10.png" %>',
   readOnly: true,
   score: <%= @post.rating.round %>
 });

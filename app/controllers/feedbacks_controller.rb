@@ -46,7 +46,7 @@ class FeedbacksController < ApplicationController
 
       @post.save
       @notification.save
-      redirect_to root_path
+      redirect_to root_path, notice: 'フィードバックを送りました！'
     else
       render "new"
     end

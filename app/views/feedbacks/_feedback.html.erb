@@ -21,8 +21,8 @@
 $('#star_rating_<%= feedback.id %>').raty('destroy');
 $('#star_rating_<%= feedback.id %>').raty({
   number: 5,
-  starOff: '/assets/star-off-10.png',
-  starOn: '/assets/star-on-10.png',
+  starOff: '<%= asset_path "star-off-10.png" %>',
+  starOn: '<%= asset_path "star-on-10.png" %>',
   readOnly: true,
   score: <%= feedback.rating %>
 });

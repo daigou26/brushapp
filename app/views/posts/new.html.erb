@@ -23,7 +23,7 @@
       <div class="container-fluid" id="title-form">
         <div class="col-md-6 form-group mx-auto">
           <label>サービス・アプリ名</label>
-          <%= f.text_field :title, value: @post.title,class: "form-control", placeholder: "例： StartDash" %>
+          <%= f.text_field :title, value: @post.title,class: "form-control", placeholder: "例： BrushApp" %>
           <p class="text-danger">
             <%= @post.errors.messages[:title][0] if @post.errors.messages[:title].any? %>
           </p>
@@ -32,7 +32,7 @@
       <div class="container-fluid" id="content-form">
         <div class="col-md-6 form-group mx-auto">
           <label>説明</label>
-          <%= f.text_area :content, value: @post.content, class: "form-control", placeholder: "例： 自分が作ったものをSNSで簡単にシェア、フィードバック管理ができるサービス" %>
+          <%= f.text_area :content, value: @post.content, class: "form-control", placeholder: "例： プロダクトをSNSで簡単にシェア、フィードバック管理ができるサービス" %>
           <p class="text-danger">
             <%= @post.errors.messages[:content][0] if @post.errors.messages[:content].any? %>
           </p>

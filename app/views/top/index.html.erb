@@ -3,6 +3,11 @@
   <%= render 'shared/navbar' %>
 
   <div class="container-fluid" id="top-page">
+    <% flash.each do |key, value| %>
+      <div class="alert alert-info" role="alert">
+        <%= value %>
+      </div>
+    <% end %>
     <% if user_signed_in? %>
       <% if @feed_items.any?  %>
         <h4 class="ml-3 mt-5 mb-5">

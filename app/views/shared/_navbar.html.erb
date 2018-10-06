@@ -61,7 +61,6 @@
             <img src="<%= current_user[:image] %>" class="rounded-circle" id="profile-image">
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="right: 0; left: auto;">
-            <a class="dropdown-item" href="">マイベージ</a>
             <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
               ログアウト
             <% end %>

@@ -10,7 +10,7 @@
         </div>
         <div class="col-12 form-group mt-3">
           <%= f.text_area :content, class: "form-control", style: "height: 200px;", placeholder: "レビューを入力してください..." %>
-          <p class="text-secondary">
+          <p class="text-secondary" style="font-size: 14px;">
             評価またはレビューのどちらかを入力していれば送信できます。
           </p>
           <p class="text-danger">
@@ -38,8 +38,8 @@
 
 <script>
 $('#star').raty({
-  starOff: '/assets/star-off-30.png',
-  starOn : '/assets/star-on-30.png',
+  starOff: '<%= asset_path "star-off-30.png" %>',
+  starOn: '<%= asset_path "star-on-30.png" %>',
   click: function(score, e) {
     $("#post_rating").val(score)
   }

@@ -15,14 +15,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       print("persisted true")
-      flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: provider.capitalize)
       sign_in_and_redirect @user, event: :authentication
     else
+      redirect_to root_path
       print("persisted false")
-      logger.debug("‘Hello world’")
 
-      session["devise.#{provider}_data"] = request.env['omniauth.auth']
-      redirect_to controller: 'sessions', action: 'new'
+      # session["devise.#{provider}_data"] = request.env['omniauth.auth']
+      # redirect_to controller: 'sessions', action: 'new'
     end
   end
 end
