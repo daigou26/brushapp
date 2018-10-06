@@ -63,7 +63,7 @@
       <% end %>
       <% if user_signed_in? %>
         <% if @post.user_id == current_user.id %>
-          <%= link_to "https://twitter.com/intent/tweet?text="+u("#{@post.content}\n")+"&url="+u("#{@post.url}"), :target=>["_blank"] do %>
+          <%= link_to "https://twitter.com/intent/tweet?text="+u("#{@post.content}\n")+"&url="+"https://brushapp.me/users/#{User.find(@post.user_id).nickname}/posts/#{@post.id}", :target=>["_blank"] do %>
             <div class="btn btn-info" id="post-detail-tweet-button">
               Twitterに投稿
             </div>
