@@ -1,0 +1,88 @@
+<% set_meta_tags title: @post.title, description: @post.content, og: { url: "https://brushapp.me/users/#{User.find(@post.user_id).nickname}/posts/#{@post.id}/feedback", title: @post.title, description: @post.content, image: @post.image.url } %>
+
+<div class="container-fluid">
+  <%= render 'shared/navbar' %>
+    <div>
+      <!-- Sidebar -->
+      <div id="sidenav" class="sidenav p-0">
+        <a href="/" onclick="openNav()" id="brand">
+          <img src="<%= asset_path "icon.png" %>" id="brand-icon">
+          <span class="align-middle">
+            BrushApp
+          </span>
+        </a>
+        <hr class="m-0 bg-secondary" />
+        <a href="" id="project">
+          <img src="<%= asset_path "home-blue.png" %>" id="icon">
+          <span class="align-middle" style="color: #4fbbef;">
+            Project
+          </span>
+        </a>
+        <a href="/users/<%= current_user[:nickname] %>/posts/<%= @post.id %>/feedbacks" id="feedback">
+          <img src="<%= asset_path "feedback.png" %>" id="icon">
+          <span class="align-middle" style="color: #cccccc;">
+            Feedback
+          </span>
+        </a>
+        <a href="/users/<%= current_user[:nickname] %>/posts/<%= @post.id %>/edit" id="edit">
+          <img src="<%= asset_path "edit.png" %>" id="icon">
+          <span class="align-middle" style="color: #cccccc;">
+            Edit
+          </span>
+        </a>
+      </div>
+
+      <!-- Page Content -->
+      <div id="page-content">
+          <div class="container-fluid">
+            <div class="container" id="post-detail-container">
+              <img src="<%= @post.image.url %>" class="img-fluid">
+              <div class="text-left">
+                <span id="post-title"><%= @post.title %></span>
+              </div>
+              <div class="text-left">
+                <span class="font-weight-light" id="post-content"><%= @post.content %></span>
+              </div>
+              <div class="mt-3">
+                <% if @post.rating != nil && @post.rating != 0 %>
+                  <span id="rating"><%= @post.rating.round(1) %></span>
+                <% end %>
+                <span id='star_rating'></span>
+                <span id="rating-count">
+                  <% if @post.rating_count != nil && @post.rating_count != 0 %>
+                    <%= @post.rating_count %>人が評価しています
+                  <% else %>
+                    まだ評価されていません
+                  <% end %>
+                </span>
+              </div>
+
+              <div class="d-flex justify-content-between">
+                <%= link_to @post.url, :target=>["_blank"] do %>
+                  <div class="btn btn-outline-info" id="url-button">
+                    サービス・アプリのページへ
+                  </div>
+                <% end %>
+                <%= link_to "https://twitter.com/intent/tweet?text="+u("#{@post.content}\n")+"&url="+"https://brushapp.me/users/#{User.find(@post.user_id).nickname}/posts/#{@post.id}/feedback", :target=>["_blank"] do %>
+                  <div class="btn btn-info" id="post-detail-tweet-button">
+                    Twitterに投稿
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
+
+<script>
+$('#star_rating').raty('destroy');
+$('#star_rating').raty({
+  size: 20,
+  number: 5,
+  starOff: '<%= asset_path "star-off-10.png" %>',
+  starOn: '<%= asset_path "star-on-10.png" %>',
+  readOnly: true,
+  score: <%= @post.rating.round %>
+});
+</script>

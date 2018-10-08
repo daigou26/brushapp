@@ -70,7 +70,6 @@ div#edit-post { font-size: 14px;}
     }
     // top-page
     div#main-container { margin-top: 50px; margin-bottom: 100px;}
-    div#dashboard-main-container {margin-top: 50px; margin-bottom: 50px;}
     p#description { font-size: 12pt; margin-top: 50px;}
     div#main-container-button {
       font-size: 14px;
@@ -163,7 +162,7 @@ div#edit-post { font-size: 14px;}
     }
 
     .sidenav a:hover {
-      color: #f1f1f1;
+      background-color: rgba(255,255,255,0.2);
     }
 
     .sidenav a#brand {
@@ -181,21 +180,18 @@ div#edit-post { font-size: 14px;}
       padding-top: 10px;
       padding-bottom: 10px;
       font-size: 18px;
-      color: #cccccc;
     }
-    
+
     .sidenav a#feedback {
       padding-top: 10px;
       padding-bottom: 10px;
       font-size: 18px;
-      color: #4fbbef;
     }
 
     .sidenav a#edit {
       padding-top: 10px;
       padding-bottom: 10px;
       font-size: 18px;
-      color: #cccccc;
     }
 
     .sidenav img#icon {
@@ -205,7 +201,7 @@ div#edit-post { font-size: 14px;}
       height: 18px;
     }
 
-    div#feedback-new-page-content {
+    div#page-content {
       word-break: break-all;
     }
 
@@ -237,7 +233,6 @@ div#edit-post { font-size: 14px;}
     }
     // top-page
     div#main-container { margin-top: 50px; margin-bottom: 100px;}
-    div#dashboard-main-container {margin-top: 100px; margin-bottom: 100px;}
     p#description { font-size: 12pt; margin-top: 50px;}
     div#main-container-button {
       font-size: 20px;
@@ -316,7 +311,7 @@ div#edit-post { font-size: 14px;}
     }
 
     .sidenav a:hover {
-      color: #f1f1f1;
+      background-color: rgba(255,255,255,0.2);
     }
 
     .sidenav a#brand {
@@ -334,21 +329,18 @@ div#edit-post { font-size: 14px;}
       padding-top: 10px;
       padding-bottom: 10px;
       font-size: 18px;
-      color: #cccccc;
     }
 
     .sidenav a#feedback {
       padding-top: 10px;
       padding-bottom: 10px;
       font-size: 18px;
-      color: #4fbbef;
     }
 
     .sidenav a#edit {
       padding-top: 10px;
       padding-bottom: 10px;
       font-size: 20px;
-      color: #cccccc;
     }
 
     .sidenav img#icon {
@@ -358,10 +350,9 @@ div#edit-post { font-size: 14px;}
       height: 18px;
     }
 
-    div#feedback-new-page-content {
+    div#page-content {
       word-break: break-all;
       margin-left: 180px;
-      font-size: 28px;
       padding: 0px 10px;
     }
 
@@ -396,8 +387,7 @@ div#edit-post { font-size: 14px;}
 
     // top-page
     div#main-container { margin-top: 100px; margin-bottom: 200px;}
-    div#dashboard-main-container {margin-top: 100px; margin-bottom: 100px;}
-    div#dashboard-main-container h1 { font-size: 34px;}
+    div#main-container h1 { font-size: 34px;}
     p#description { font-size: 16pt; margin-top: 100px;}
     div#main-container-button {
       font-size: 20px;
@@ -481,7 +471,6 @@ div#edit-post { font-size: 14px;}
     }
 
     .sidenav a:hover {
-      color: #f1f1f1;
       background-color: rgba(255,255,255,0.2);
     }
 
@@ -500,21 +489,18 @@ div#edit-post { font-size: 14px;}
       padding-top: 10px;
       padding-bottom: 10px;
       font-size: 18px;
-      color: #cccccc;
     }
 
     .sidenav a#feedback {
       padding-top: 10px;
       padding-bottom: 10px;
       font-size: 18px;
-      color: #4fbbef;
     }
 
     .sidenav a#edit {
       padding-top: 10px;
       padding-bottom: 10px;
       font-size: 18px;
-      color: #cccccc;
     }
 
     .sidenav img#icon {
@@ -524,10 +510,9 @@ div#edit-post { font-size: 14px;}
       height: 20px;
     }
 
-    div#feedback-new-page-content {
+    div#page-content {
       word-break: break-all;
       margin-left: 256px;
-      font-size: 28px;
       padding: 0px 10px;
     }
 
