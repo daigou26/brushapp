@@ -12,9 +12,14 @@
   </head>
 
   <body>
+    <div class="body-overlay" onclick="closeNav()" id="body-overlay">
+
+    </div>
     <div class="content">
       <%= yield %>
     </div>
-    <%= render 'shared/footer' %>
+    <% if controller.controller_name == "top" && controller.action_name == "index"%>
+      <%= render 'shared/footer' %>
+    <% end %>
   </body>
 </html>

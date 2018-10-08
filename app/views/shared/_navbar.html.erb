@@ -1,8 +1,14 @@
 <nav class="navbar row navbar-dark bg-light">
   <div class="container-fluid d-flex justify-content-between">
-    <a class="navbar-brand text-dark" href="/">
-      <h3 class="my-auto">BrushApp</h3>
-    </a>
+      <% if controller.controller_name == "feedbacks" && controller.action_name == "new" %>
+          <a class="navbar-brand ml-2 btn" onclick="openNav()" id="menu-toggle">
+            <img src="<%= asset_path "menu.png" %>" style="width: 20px; height: 20px;">
+          </a>
+      <% else %>
+      <a class="navbar-brand text-dark" href="/">
+        <h3 class="my-auto">BrushApp</h3>
+      </a>
+      <% end %>
 
     <% if user_signed_in? %>
       <div class="btn-group">
@@ -71,3 +77,26 @@
     <% end %>
   </div>
 </nav>
+
+
+<script>
+  var $win = $(window);
+
+  $win.on('load resize', function() {
+    if (window.matchMedia('(max-width:767px)').matches) {
+      closeNav();
+    } else {
+      openNav();
+    }
+  });
+
+  function openNav() {
+      $("#sidenav").show();
+      $("#body-overlay").show();
+  }
+
+  function closeNav() {
+    $("#sidenav").hide();
+    $("#body-overlay").hide();
+}
+</script>

@@ -2,10 +2,10 @@
   <div class="d-flex justify-content-between">
     <div>
       <%= link_to "https://twitter.com/#{User.find(feedback.user_id).nickname}", :class => 'btn align-top', :style => 'padding: 0px;'  do %>
-        <img src="<%= User.find(feedback.user_id).image %>" class="rounded-circle" id="profile-image">
+        <img src="<%= User.find(feedback.user_id).image %>" class="rounded-circle" id="feedback-profile-image">
       <% end %>
-      <div class="ml-3" style="display:inline-block;">
-        <span class="align-top" id="feedback-username"><%= User.find(feedback.user_id).name %></span>
+      <div class="ml-3" style="display: inline-block;">
+        <div class="align-top" id="feedback-username"><%= User.find(feedback.user_id).name %></div>
         <div id="feedback-timestamp"><%= feedback.created_at.strftime('%Y/%m/%d %H:%M') %></div>
       </div>
     </div>

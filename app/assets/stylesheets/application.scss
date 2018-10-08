@@ -42,6 +42,9 @@ div#navbar-post-button { padding: 0px; font-size: 14px; color: #555555;}
 span#rating { margin-right: 2px; font-size: 12px; color: #1C9B81;}
 span#rating-count { margin-left: 5px; font-size: 12px; color: #888888;}
 p#rating-count { font-size: 14px;}
+img#feedback-profile-image {width: 30px; height: 30px;}
+div#edit-post { font-size: 14px;}
+
 
 @media screen and (max-width: 767px) {
     h1 { font-size: 22pt;}
@@ -98,7 +101,6 @@ p#rating-count { font-size: 14px;}
 
     // post-detail-page
     div#post-detail-container { margin-top: 10px;}
-    div#post-detail-container div#edit-post { font-size: 12px;}
     div#post-detail-container span#post-title { font-size: 22px;}
     div#post-detail-container span#post-content { font-size: 16px;}
     div#post-detail-container div#url-button {
@@ -117,19 +119,95 @@ p#rating-count { font-size: 14px;}
     div#send-feedback-container { margin-top: 50px;}
     p#need-login { font-size: 12px;}
     div#twitter-login-button { font-size: 14px;}
-    div#feedback-feed-container { margin-top: 50px;}
-    p#feedback-content { font-size: 12px;}
-    span#feedback-username {
+    p#feedback-content { font-size: 14px;}
+    div#feedback-username {
       font-size: 12px;
-      width:180px;
-      display:inline-block;
+      width:150px;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
       -webkit-text-overflow:ellipsis;
       -o-text-overflow: ellipsis;
     }
-    div#feedback-timestamp { color: #888888; font-size: 12px;}
+    div#feedback-timestamp { color: #888888; font-size: 10px;}
+
+    .body-overlay {
+      display: none;
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      z-index: 1;
+      background-color: rgba(0,0,0,0.4);
+      overflow-x: hidden;
+    }
+
+    .sidenav {
+      display: none;
+      height: 100%;
+      width: 180px;
+      position: fixed;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      background-color: #212f3d;
+      overflow-x: hidden;
+      transition: 0.5s;
+    }
+
+    .sidenav a {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+    }
+
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+
+    .sidenav a#brand {
+      font-size: 20px;
+      color: #f1f1f1;
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    .sidenav img#brand-icon {
+      width: 30px;
+      height: 30px;
+    }
+
+    .sidenav a#project {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 18px;
+      color: #cccccc;
+    }
+    
+    .sidenav a#feedback {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 18px;
+      color: #4fbbef;
+    }
+
+    .sidenav a#edit {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 18px;
+      color: #cccccc;
+    }
+
+    .sidenav img#icon {
+      margin-left: 6px;
+      margin-right: 6px;
+      width: 18px;
+      height: 18px;
+    }
+
+    div#feedback-new-page-content {
+      word-break: break-all;
+    }
 
     // notification-page
     div#notification-feed-container { margin-top: 50px;}
@@ -145,6 +223,7 @@ p#rating-count { font-size: 14px;}
     img#profile-image {width: 30px; height: 30px;}
 
     // navbar
+    a#menu-toggle { visibility: hidden;}
     span#notification-button {
       padding: 8px;
       margin-left: 30px;
@@ -204,18 +283,87 @@ p#rating-count { font-size: 14px;}
     }
 
     div#send-feedback-container { margin-top: 75px; max-width: 600px;}
-    div#feedback-feed-container { margin-top: 100px; max-width: 600px;}
-    p#feedback-content { width: 580px;}
-    span#feedback-username {
+    p#feedback-content { font-size: 16px;}
+    div#feedback-username {
+      font-size: 14px;
       width:300px;
-      display:inline-block;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
       -webkit-text-overflow:ellipsis;
       -o-text-overflow: ellipsis;
     }
-    div#feedback-timestamp { color: #888888; font-size: 12px; margin-top: 2px;}
+    div#feedback-timestamp { color: #888888; font-size: 10px;}
+
+    .sidenav {
+      height: 100%;
+      width: 180px;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #212f3d;
+      overflow-x: hidden;
+      transition: 0.5s;
+    }
+
+    .sidenav a {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+    }
+
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+
+    .sidenav a#brand {
+      font-size: 20px;
+      color: #f1f1f1;
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    .sidenav img#brand-icon {
+      width: 30px;
+      height: 30px;
+    }
+
+    .sidenav a#project {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 18px;
+      color: #cccccc;
+    }
+
+    .sidenav a#feedback {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 18px;
+      color: #4fbbef;
+    }
+
+    .sidenav a#edit {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 20px;
+      color: #cccccc;
+    }
+
+    .sidenav img#icon {
+      margin-left: 6px;
+      margin-right: 6px;
+      width: 18px;
+      height: 18px;
+    }
+
+    div#feedback-new-page-content {
+      word-break: break-all;
+      margin-left: 180px;
+      font-size: 28px;
+      padding: 0px 10px;
+    }
 
     // notification-page
     div#notification-feed-container { margin-top: 50px; max-width: 600px;}
@@ -237,6 +385,7 @@ p#rating-count { font-size: 14px;}
     img#profile-image {width: 40px; height: 40px;}
 
     // navbar
+    a#menu-toggle { visibility: hidden;}
     span#notification-button {
       padding: 10px;
       margin-left: 30px;
@@ -299,18 +448,93 @@ p#rating-count { font-size: 14px;}
     }
 
     div#send-feedback-container { margin-top: 75px; max-width: 600px;}
-    div#feedback-feed-container { margin-top: 100px; max-width: 600px;}
-    p#feedback-content { width: 580px;}
-    span#feedback-username {
+    p#feedback-content { font-size: 16px;}
+    div#feedback-username {
+      font-size: 14px;
       width:300px;
-      display:inline-block;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
       -webkit-text-overflow:ellipsis;
       -o-text-overflow: ellipsis;
     }
-    div#feedback-timestamp { color: #888888; font-size: 12px; margin-top: 2px;}
+    div#feedback-timestamp { color: #888888; font-size: 10px;}
+
+    .sidenav {
+      height: 100%;
+      width: 256px;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #212f3d;
+      overflow-x: hidden;
+      transition: 0.5s;
+    }
+
+    .sidenav a {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+    }
+
+    .sidenav a:hover {
+      color: #f1f1f1;
+      background-color: rgba(255,255,255,0.2);
+    }
+
+    .sidenav a#brand {
+      font-size: 24px;
+      color: #f1f1f1;
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    .sidenav img#brand-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .sidenav a#project {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 18px;
+      color: #cccccc;
+    }
+
+    .sidenav a#feedback {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 18px;
+      color: #4fbbef;
+    }
+
+    .sidenav a#edit {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 18px;
+      color: #cccccc;
+    }
+
+    .sidenav img#icon {
+      margin-left: 10px;
+      margin-right: 10px;
+      width: 20px;
+      height: 20px;
+    }
+
+    div#feedback-new-page-content {
+      word-break: break-all;
+      margin-left: 256px;
+      font-size: 28px;
+      padding: 0px 10px;
+    }
+
+    div#project-bar {
+      height: 50px;
+      background-color: #555555;
+    }
 
     // notification-page
     div#notification-feed-container { margin-top: 50px; max-width: 600px;}
