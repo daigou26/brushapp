@@ -4,8 +4,8 @@ module ApplicationHelper
       site: 'BrushApp',
       reverse: true,
       charset: 'utf-8',
-      title: 'プロダクトをSNSに簡単にシェアでき、フィードバックを管理できるサービス',
-      description: 'プロダクトをSNSに簡単にシェアでき、フィードバックを管理できるサービス',
+      title: 'プロダクトをSNSに簡単にシェアでき、フィードバックが管理できるサービス',
+      description: 'プロダクトを簡単SNSにシェアすることができます。また、もらったフィードバックを管理することができます。',
       canonical: request.original_url,
       separator: '|',
       icon: [
@@ -15,8 +15,8 @@ module ApplicationHelper
       og: {
         site_name: 'BrushApp',
         type: 'website',
-        title: 'プロダクトをSNSに簡単にシェアでき、フィードバックを管理できるサービス | BrushApp',
-        description: 'プロダクトをSNSに簡単にシェアでき、フィードバックを管理できるサービス',
+        title: 'プロダクトをSNSに簡単にシェアでき、フィードバック管理ができるサービス | BrushApp',
+        description: 'プロダクトを簡単SNSにシェアすることができます。また、もらったフィードバックを管理することができます。',
         url: request.original_url,
         locale: 'ja_JP',
       },

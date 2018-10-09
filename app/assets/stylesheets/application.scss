@@ -70,14 +70,17 @@ div#edit-post { font-size: 14px;}
     }
     // top-page
     div#main-container { margin-top: 50px; margin-bottom: 100px;}
-    p#description { font-size: 12pt; margin-top: 50px;}
+    div#top-text-content div#top-text-content-container { width: 400px;}
+    div#top-main-image img { width: 400px; height: 300px; margin-top: 80px;}
+    p#description { font-size: 12pt; margin-top: 30px;}
     div#main-container-button {
       font-size: 14px;
-      margin-top: 50px;
+      margin-top: 40px;
       border-radius: 20px;
       padding-left: 15px;
       padding-right: 15px;
     }
+
     div#feature-item { margin-bottom: 50px;}
     div#feature-item p { font-size: 14px;}
     div#feature-item img {width: 65px; height: 65px;}
@@ -233,14 +236,17 @@ div#edit-post { font-size: 14px;}
     }
     // top-page
     div#main-container { margin-top: 50px; margin-bottom: 100px;}
-    p#description { font-size: 12pt; margin-top: 50px;}
+    div#top-text-content div#top-text-content-container { width: 500px;}
+    p#description { font-size: 12pt; margin-top: 30px;}
+    div#top-main-image img { width: 500px; height: 350px; margin-top: 100px;}
     div#main-container-button {
-      font-size: 20px;
-      margin-top: 50px;
+      font-size: 14px;
+      margin-top: 40px;
       border-radius: 20px;
       padding-left: 20px;
       padding-right: 20px;
     }
+
     div#feature-item { margin-bottom: 50px;}
     div#feature-item img {width: 75px; height: 75px;}
     div#feature-item h4 {margin-top: 20px; margin-bottom: 16px;}
@@ -369,7 +375,7 @@ div#edit-post { font-size: 14px;}
 @media screen and (min-width: 992px){
     h1 { font-size: 40pt;}
     h2 { font-size: 34pt;}
-    h3 { font-size: 24pt;}
+    h3 { font-size: 18pt;}
     h4 { font-size: 18pt;}
 
     // shared
@@ -386,12 +392,13 @@ div#edit-post { font-size: 14px;}
     }
 
     // top-page
-    div#main-container { margin-top: 100px; margin-bottom: 200px;}
-    div#main-container h1 { font-size: 34px;}
-    p#description { font-size: 16pt; margin-top: 100px;}
+    div#main-container { margin-top: 70px; margin-bottom: 200px;}
+    div#top-text-content div#top-text-content-container { width: 320px;}
+    div#top-main-image img { margin-left: 70px; width: 500px; height: 350px;}
+    p#description { font-size: 12pt; margin-top: 30px;}
     div#main-container-button {
-      font-size: 20px;
-      margin-top: 50px;
+      font-size: 14px;
+      margin-top: 40px;
       border-radius: 20px;
       padding-left: 20px;
       padding-right: 20px;

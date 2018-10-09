@@ -15,10 +15,12 @@ ActiveRecord::Schema.define(version: 2018_09_30_080656) do
   create_table "feedbacks", force: :cascade do |t|
     t.text "content"
     t.integer "rating"
+    t.integer "priority_rate"
     t.integer "user_id"
     t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_id", "created_at"], name: "index_feedbacks_on_post_id_and_created_at", order: { created_at: :desc }
     t.index ["post_id"], name: "index_feedbacks_on_post_id"
     t.index ["user_id"], name: "index_feedbacks_on_user_id"
   end
@@ -31,6 +33,7 @@ ActiveRecord::Schema.define(version: 2018_09_30_080656) do
     t.string "feedback_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "created_at"], name: "index_notifications_on_user_id_and_created_at", order: { created_at: :desc }
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
@@ -46,7 +49,7 @@ ActiveRecord::Schema.define(version: 2018_09_30_080656) do
     t.integer "rating_count"
     t.integer "review_count"
     t.integer "new_feedback_count"
-    t.index ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
+    t.index ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at", order: { created_at: :desc }
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

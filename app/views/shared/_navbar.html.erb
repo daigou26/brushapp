@@ -1,13 +1,19 @@
 <nav class="navbar row navbar-dark bg-light">
   <div class="container-fluid d-flex justify-content-between">
       <% if controller.controller_name == "feedbacks" && controller.action_name == "new" %>
+        <% if user_signed_in? && current_user.posts.exists?(id: @post.id) %>
           <a class="navbar-brand ml-2 btn" onclick="openNav()" id="menu-toggle">
-            <img src="<%= asset_path "menu.png" %>" style="width: 20px; height: 20px;">
+            <img src="<%= asset_path "menu.png" %>" style="width: 20px; height: 20px;"/>
           </a>
+        <% else %>
+          <a class="navbar-brand text-dark" href="/">
+            <h3 class="my-auto">BrushApp</h3>
+          </a>
+        <% end %>
       <% else %>
-      <a class="navbar-brand text-dark" href="/">
-        <h3 class="my-auto">BrushApp</h3>
-      </a>
+        <a class="navbar-brand text-dark" href="/">
+          <h3 class="my-auto">BrushApp</h3>
+        </a>
       <% end %>
 
     <% if user_signed_in? %>
@@ -34,8 +40,8 @@
           </a>
           <% if current_user.notifications.count != 0 %>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="right: 0; left: auto; width: 300px;">
-              <% current_user.notification_feed.order(created_at: :desc).limit(5).each do |notification| %>
-                <%= link_to user_post_path(:user_id => current_user[:nickname], :id => notification.post_id), class: "dropdown-item" do %>
+              <% current_user.notification_feed.limit(5).each do |notification| %>
+                <%= link_to "/users/#{current_user[:nickname]}/posts/#{notification.post_id}/feedbacks", class: "dropdown-item" do %>
                   <img src="<%= User.find(notification.feedback_user_id).image %>" class="rounded-circle align-top" id="profile-image">
                   <div id="notification-text">
                       <span class="align-top" id="content">
