@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+/vendor/bundle
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -31,3 +32,5 @@
 /config/master.key
 
 .DS_Store
+/image/uploads
+/public/uploads

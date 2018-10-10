@@ -1,0 +1,118 @@
+<% set_meta_tags noindex: true %>
+<div class="container-fluid">
+
+  <%= render 'shared/navbar' %>
+
+  <div>
+    <!-- Sidebar -->
+    <div id="sidenav" class="sidenav p-0">
+      <a href="/" onclick="openNav()" id="brand">
+        <img src="<%= asset_path "icon.png" %>" id="brand-icon">
+        <span class="align-middle">
+          BrushApp
+        </span>
+      </a>
+      <hr class="m-0 bg-secondary" />
+      <a href="<%= user_post_path(:user_id => current_user[:nickname], :id => @post.id) %>" id="project">
+        <img src="<%= asset_path "home.png" %>" id="icon">
+        <span class="align-middle" style="color: #cccccc;">
+          Project
+        </span>
+      </a>
+      <a href="/users/<%= current_user[:nickname] %>/posts/<%= @post.id %>/feedbacks" id="feedback">
+        <img src="<%= asset_path "feedback.png" %>" id="icon">
+        <span class="align-middle" style="color: #cccccc;">
+          Feedback
+        </span>
+      </a>
+      <a href="" id="edit">
+        <img src="<%= asset_path "edit-blue.png" %>" id="icon">
+        <span class="align-middle" style="color: #4fbbef;">
+          Edit
+        </span>
+      </a>
+    </div>
+
+    <!-- Page Content -->
+    <div id="page-content">
+        <div class="container-fluid">
+          <%= form_for @post, :url => {:action => 'update'} do |f| %>
+            <div class="row">
+              <div class="container-fluid">
+                <div class="col-md-8 mx-auto">
+                  <p class="mt-3">サービスの画像</p>
+                  <%= image_tag @post.image.url, :id => "image_preview", :size => '600x400', :class => 'img-fluid' %>
+                </div>
+              </div>
+              <div class="container-fluid" id="file-form">
+                <div class="col-md-8 mx-auto">
+                  <span class="image">
+                    <%= f.file_field :image, id: :post_image, accept: 'image/jpeg, image/png, image/jpg'  %>
+                  </span>
+                  <p class="text-danger">
+                    <%= @post.errors.messages[:image][0] if @post.errors.messages[:image].any? %>
+                  </p>
+                </div>
+              </div>
+              <div class="container-fluid" id="title-form">
+                <div class="col-md-8 form-group mx-auto">
+                  <label>サービス・アプリ名</label>
+                  <%= f.text_field :title, class: "form-control", placeholder: "例： StartDash" %>
+                  <p class="text-danger">
+                    <%= @post.errors.messages[:title][0] if @post.errors.messages[:title].any? %>
+                  </p>
+                </div>
+              </div>
+              <div class="container-fluid" id="content-form">
+                <div class="col-md-8 form-group mx-auto">
+                  <label>説明</label>
+                  <%= f.text_area :content, class: "form-control", placeholder: "例： 自分が作ったものをSNSで簡単にシェア、フィードバック管理ができるサービス" %>
+                  <p class="text-danger">
+                    <%= @post.errors.messages[:content][0] if @post.errors.messages[:content].any? %>
+                  </p>
+                </div>
+              </div>
+              <div class="container-fluid" id="url-form">
+                <div class="col-md-8 form-group mx-auto">
+                  <label>サービスへのURL</label>
+                  <%= f.text_field :url, class: "form-control" %>
+                  <p class="text-danger">
+                    <%= "URLを入力してください" if @post.errors.messages[:url].any? %>
+                  </p>
+                </div>
+              </div>
+              <div class="container text-center mb-5" id="post_button">
+                <%= f.submit "更新する", class: "btn btn-info", style: "width: 150px;" %>
+              </div>
+            </div>
+          <% end %>
+
+          <%= link_to user_post_path(:user_id => current_user[:nickname], :id => @post.id), :method => :delete do %>
+            <div class="text-center mb-3">
+              <div class="btn text-danger" id="delete-post">
+                投稿を削除
+              </div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $(function() {
+   function readURL(input) {
+     if (input.files && input.files[0]) {
+       var reader = new FileReader();
+       reader.onload = function (e) {
+         $('#image_preview').attr('src', e.target.result);
+       }
+       reader.readAsDataURL(input.files[0]);
+     }
+   }
+   $("#post_image").change(function(){
+     readURL(this);
+   });
+  });
+</script>

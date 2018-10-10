@@ -1,0 +1,99 @@
+<div class="container-fluid">
+
+  <%= render 'shared/navbar' %>
+
+  <div class="container-fluid" id="top-page">
+    <% flash.each do |key, value| %>
+      <div class="alert alert-info" role="alert">
+        <%= value %>
+      </div>
+    <% end %>
+    <% if user_signed_in? %>
+      <% if @feed_items.any?  %>
+        <h4 class="ml-3 mt-5 mb-5">
+          Projects
+        </h4>
+        <div class="container-fluid">
+          <div class="row align-self-stretch">
+            <%= render @feed_items %>
+          </div>
+          <%= paginate @feed_items %>
+        </div>
+      <% else %>
+        <div class="container-fluid" id="main-container">
+          <div class="row justify-content-center">
+            <div class="my-auto" id="top-text-content">
+              <div class="container p-0" id="top-text-content-container">
+                <h3 class="text-center font-weight-bold">フィードバックをもらって<br />より良いプロダクトを作ろう</h3>
+                <p class="text-center" id="description">
+                  プロダクトをSNSでシェアし、<br />もらったフィードバックを管理しましょう
+                </p>
+                <div class="text-center">
+                  <%= link_to "/users/#{current_user[:nickname]}/posts/new" do %>
+                    <div class="btn btn-info" id="main-container-button">
+                      投稿する
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class=" my-auto" id="top-main-image">
+              <img src="<%= asset_path "top-main.png" %>" class="img-fluid" style="border-radius: 20px;">
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="container-fluid" id="main-container">
+        <div class="row justify-content-center">
+          <div class="my-auto" id="top-text-content">
+            <div class="container p-0" id="top-text-content-container">
+              <h3 class="text-center font-weight-bold">フィードバックをもらって<br />より良いプロダクトを作ろう</h3>
+              <p class="text-center" id="description">
+                プロダクトをSNSでシェアし、<br />もらったフィードバックを管理しましょう
+              </p>
+              <div class="text-center">
+                <%= link_to user_twitter_omniauth_authorize_path do %>
+                  <div class="btn btn-info" id="main-container-button">
+                    Twitterでログイン
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div id="top-main-image">
+            <img src="<%= asset_path "top-main.png" %>" class="img-fluid" style="border-radius: 20px;">
+          </div>
+        </div>
+      </div>
+
+      <hr class="mb-5"/>
+
+      <div class="container">
+        <div class="row justify-content-center" id="feature-section">
+          <div class="col-lg-4 col-md-12" id="feature-item">
+            <div class="container text-center">
+              <img src="<%= asset_path "release.png" %>" class="rounded" alt="...">
+              <h4 class="font-weight-bold">プロダクトをSNSにシェア</h4>
+              <p>ボタンを押すだけで<br />簡単にSNSに投稿できます</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12" id="feature-item">
+            <div class="container text-center">
+              <img src="<%= asset_path "star.png" %>" class="rounded" alt="...">
+              <h4 class="font-weight-bold">フィードバックをもらおう</h4>
+              <p>プロダクトをSNSでシェアして<br />フィードバックをもらいましょう</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12" id="feature-item">
+            <div class="container text-center">
+              <img src="<%= asset_path "talk.png" %>" class="rounded" alt="...">
+              <h4 class="font-weight-bold">ユーザーと繋がろう</h4>
+              <p>さらにユーザーと話したい場合は<br />SNS上でやり取り出来ます</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

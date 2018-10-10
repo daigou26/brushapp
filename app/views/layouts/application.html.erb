@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Startdash</title>
+    <%= display_meta_tags(default_meta_tags) %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'jquery.raty' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="body-overlay" onclick="closeNav()" id="body-overlay">
+
+    </div>
+    <div class="content">
+      <%= yield %>
+    </div>
+    <% if controller.controller_name == "top" && controller.action_name == "index"%>
+      <%= render 'shared/footer' %>
+    <% elsif controller.controller_name == "terms" || controller.controller_name == "privacy_policy" %>
+      <%= render 'shared/footer' %>
+    <% end %>
   </body>
 </html>

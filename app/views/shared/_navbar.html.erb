@@ -1,0 +1,108 @@
+<nav class="navbar row navbar-dark bg-light">
+  <div class="container-fluid d-flex justify-content-between">
+      <% if controller.controller_name == "feedbacks" && controller.action_name == "new" %>
+        <% if user_signed_in? && current_user.posts.exists?(id: @post.id) %>
+          <a class="navbar-brand ml-2 btn" onclick="openNav()" id="menu-toggle">
+            <img src="<%= asset_path "menu.png" %>" style="width: 20px; height: 20px;"/>
+          </a>
+        <% else %>
+          <a class="navbar-brand text-dark" href="/">
+            <h3 class="my-auto">BrushApp</h3>
+          </a>
+        <% end %>
+      <% else %>
+        <a class="navbar-brand text-dark" href="/">
+          <h3 class="my-auto">BrushApp</h3>
+        </a>
+      <% end %>
+
+    <% if user_signed_in? %>
+      <div class="btn-group">
+        <%= link_to "/users/#{current_user[:nickname]}/posts/new", :class => 'my-auto' do %>
+          <div class="btn font-weight-bold" id="navbar-post-button">
+            投稿する
+          </div>
+        <% end %>
+
+        <div class="nav-item dropdown my-auto">
+          <a class="nav-link" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <% if current_user.notifications.where("unread = ?", true).count == 0 %>
+              <span class="badge badge-light btn" style="border-color: #1EA1B3; border-width: 2px;" id="notification-button">
+                <span style="color: #1EA1B3;">
+                  <%= current_user.notifications.where("unread = ?", true).count %>
+                </span>
+              </span>
+            <% else %>
+              <span class="badge badge-danger btn" id="notification-button">
+                <%= current_user.notifications.where("unread = ?", true).count %>
+              </span>
+            <% end %>
+          </a>
+          <% if current_user.notifications.count != 0 %>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="right: 0; left: auto; width: 300px;">
+              <% current_user.notification_feed.limit(5).each do |notification| %>
+                <%= link_to "/users/#{current_user[:nickname]}/posts/#{notification.post_id}/feedbacks", class: "dropdown-item" do %>
+                  <img src="<%= User.find(notification.feedback_user_id).image %>" class="rounded-circle align-top" id="profile-image">
+                  <div id="notification-text">
+                      <span class="align-top" id="content">
+                        <% if notification.notification_type == "feedback" %>
+                          <%= User.find(notification.feedback_user_id).name %>があなたの投稿にフィードバックを送りました。
+                        <% elsif notification.notification_type == "rating" %>
+                          <%= User.find(notification.feedback_user_id).name %>があなたの投稿を評価しました。
+                        <% else %>
+                          <%= User.find(notification.feedback_user_id).name %>があなたの投稿にレビューを送りました。
+                        <% end %>
+                      </span>
+                    <div id="timestamp"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></div>
+                  </div>
+                <% end %>
+                <hr class="m-2" />
+              <% end %>
+              <%= link_to user_notifications_path(:user_id => current_user[:nickname]), class: "dropdown-item text-center" do %>
+                <span style="font-size: 12px;">
+                  通知一覧を見る
+                </span>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+
+        <div class="nav-item dropdown">
+          <a class="nav-link btn" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="<%= current_user[:image] %>" class="rounded-circle" id="profile-image">
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="right: 0; left: auto;">
+            <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
+              ログアウト
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</nav>
+
+
+<script>
+  var $win = $(window);
+
+  $win.on('load resize', function() {
+    if (window.matchMedia('(max-width:767px)').matches) {
+      closeNav();
+    } else {
+      openNav();
+    }
+  });
+
+  function openNav() {
+      $("#sidenav").show();
+      $("#body-overlay").show();
+  }
+
+  function closeNav() {
+    $("#sidenav").hide();
+    $("#body-overlay").hide();
+}
+</script>
