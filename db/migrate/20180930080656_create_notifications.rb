@@ -9,6 +9,5 @@ class CreateNotifications < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-    add_index(:notifications, [:user_id, :created_at], order: {created_at: :desc})
   end
 end
