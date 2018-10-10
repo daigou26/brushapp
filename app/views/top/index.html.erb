@@ -11,7 +11,7 @@
     <% if user_signed_in? %>
       <% if @feed_items.any?  %>
         <h4 class="ml-3 mt-5 mb-5">
-          Project
+          Projects
         </h4>
         <div class="container-fluid">
           <div class="row align-self-stretch">
@@ -73,21 +73,21 @@
         <div class="row justify-content-center" id="feature-section">
           <div class="col-lg-4 col-md-12" id="feature-item">
             <div class="container text-center">
-              <img src="assets/release.png" class="rounded" alt="...">
+              <img src="<%= asset_path "release.png" %>" class="rounded" alt="...">
               <h4 class="font-weight-bold">プロダクトをSNSにシェア</h4>
               <p>ボタンを押すだけで<br />簡単にSNSに投稿できます</p>
             </div>
           </div>
           <div class="col-lg-4 col-md-12" id="feature-item">
             <div class="container text-center">
-              <img src="assets/star.png" class="rounded" alt="...">
+              <img src="<%= asset_path "star.png" %>" class="rounded" alt="...">
               <h4 class="font-weight-bold">フィードバックをもらおう</h4>
               <p>プロダクトをSNSでシェアして<br />フィードバックをもらいましょう</p>
             </div>
           </div>
           <div class="col-lg-4 col-md-12" id="feature-item">
             <div class="container text-center">
-              <img src="assets/talk.png" class="rounded" alt="...">
+              <img src="<%= asset_path "talk.png" %>" class="rounded" alt="...">
               <h4 class="font-weight-bold">ユーザーと繋がろう</h4>
               <p>さらにユーザーと話したい場合は<br />SNS上でやり取り出来ます</p>
             </div>

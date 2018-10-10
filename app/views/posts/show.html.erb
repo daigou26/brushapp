@@ -1,4 +1,7 @@
-<% set_meta_tags title: @post.title, description: @post.content, og: { url: "https://brushapp.me/users/#{User.find(@post.user_id).nickname}/posts/#{@post.id}/feedback", title: @post.title, description: @post.content, image: @post.image.url } %>
+<% set_meta_tags title: @post.title, description: @post.content,
+og: { url: "https://brushapp.me/users/#{User.find(@post.user_id).nickname}/posts/#{@post.id}/feedback",
+title: @post.title, description: @post.content, image: { url: @post.image.url} },
+twitter: { title: @post.title, description: @post.content, image: @post.image.url} %>
 
 <div class="container-fluid">
   <%= render 'shared/navbar' %>

@@ -1,6 +1,13 @@
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  process resize_to_fill: [1200, 630]
+  
+  process resize: [1200, 630]
+  def resize(width, height)
+    manipulate! do |img|
+      img.resize "#{width}x#{height}!"
+      img
+    end
+  end
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick

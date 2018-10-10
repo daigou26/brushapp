@@ -15,14 +15,22 @@ module ApplicationHelper
       og: {
         site_name: 'BrushApp',
         type: 'website',
-        title: 'プロダクトをSNSに簡単にシェアでき、フィードバック管理ができるサービス | BrushApp',
-        description: 'プロダクトを簡単SNSにシェアすることができます。また、もらったフィードバックを管理することができます。',
+        title: 'BrushApp',
+        description: 'プロダクトをSNSに簡単にシェアでき、フィードバック管理ができるサービス',
         url: request.original_url,
+        image: {
+          url: image_url('brushapp.png'),
+          width: 1200,
+          height: 630,
+        },
         locale: 'ja_JP',
       },
       twitter: {
         card: 'summary_large_image',
         site: '@brushapp_me',
+        title: 'BrushApp',
+        description: 'プロダクトをSNSに簡単にシェアでき、フィードバック管理ができるサービス',
+        image: image_url('brushapp.png'),
       }
     }
   end

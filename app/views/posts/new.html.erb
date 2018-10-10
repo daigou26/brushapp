@@ -1,3 +1,4 @@
+<% set_meta_tags noindex: true %>
 <div class="container-fluid">
 
   <%= render 'shared/navbar' %>
@@ -6,8 +7,8 @@
     <div class="row">
       <div class="container-fluid">
         <div class="col-md-6 mx-auto">
-          <p class="mt-3">サービスの画像</p>
-          <%= image_tag "noimage.png", :id => "image_preview", :class => 'img-fluid' %>
+          <p class="mt-3">サービスの画像(サイズ：1200x630推奨)</p>
+          <%= image_tag "noimage.png", :id => "image_preview", :class => 'img-fluid', :style => "width:600px; height: 300px;" %>
         </div>
       </div>
       <div class="container-fluid" id="file-form">
@@ -54,14 +55,7 @@
   <% end %>
 </div>
 
-<script type="text/javascript">
-  $('#post_image').bind('change', function() {
-    var size_in_megabytes = this.files[0].size/1024/1024;
-    if (size_in_megabytes > 1) {
-      alert('Maximum file size is 1MB. Please choose a smaller file.');
-    }
-  });
-</script>
+
 <script type="text/javascript">
   $(function() {
    function readURL(input) {

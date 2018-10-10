@@ -9,6 +9,7 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'jquery.raty' %>
   </head>
 
   <body>
@@ -19,6 +20,8 @@
       <%= yield %>
     </div>
     <% if controller.controller_name == "top" && controller.action_name == "index"%>
+      <%= render 'shared/footer' %>
+    <% elsif controller.controller_name == "terms" || controller.controller_name == "privacy_policy" %>
       <%= render 'shared/footer' %>
     <% end %>
   </body>

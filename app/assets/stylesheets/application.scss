@@ -418,6 +418,12 @@ div#edit-post { font-size: 14px;}
     }
 
     // post-page
+    #crop_area_box {
+       display: block;
+       width: 600px;
+       height: 600px;
+       overflow: hidden;
+     }
     div#title-form { margin-top: 50px;}
     div#content-form { margin-top: 25px;}
     div#url-form { margin-top: 25px; margin-bottom: 50px;}
