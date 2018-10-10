@@ -3,10 +3,15 @@
   <%= render 'shared/navbar' %>
 
   <div class="container-fluid" id="top-page">
+    <% flash.each do |key, value| %>
+      <div class="alert alert-info" role="alert">
+        <%= value %>
+      </div>
+    <% end %>
     <% if user_signed_in? %>
       <% if @feed_items.any?  %>
         <h4 class="ml-3 mt-5 mb-5">
-          Dashboard
+          Projects
         </h4>
         <div class="container-fluid">
           <div class="row align-self-stretch">
@@ -14,87 +19,77 @@
           </div>
           <%= paginate @feed_items %>
         </div>
-
       <% else %>
-        <div class="row">
-          <div class="container-fluid bg-white" id="dashboard-main-container">
-            <h1 class="text-center font-weight-bold">作ったものを<br />SNSで共有しよう！</h1>
-            <div class="text-center">
-              <%= link_to new_user_post_path(:user_id => current_user[:nickname]) do %>
-                <div class="btn btn-info" id="main-container-button">
-                  投稿する
+        <div class="container-fluid" id="main-container">
+          <div class="row justify-content-center">
+            <div class="my-auto" id="top-text-content">
+              <div class="container p-0" id="top-text-content-container">
+                <h3 class="text-center font-weight-bold">フィードバックをもらって<br />より良いプロダクトを作ろう</h3>
+                <p class="text-center" id="description">
+                  プロダクトをSNSでシェアし、<br />もらったフィードバックを管理しましょう
+                </p>
+                <div class="text-center">
+                  <%= link_to "/users/#{current_user[:nickname]}/posts/new" do %>
+                    <div class="btn btn-info" id="main-container-button">
+                      投稿する
+                    </div>
+                  <% end %>
                 </div>
-              <% end %>
-            </div>
-          </div>
-        </div>
-        <hr />
-        <div class="container">
-          <div class="row justify-content-center" id="feature-section">
-            <div class="col-lg-4 col-md-12" id="feature-item">
-              <div class="container text-center">
-                <img src="assets/release.png" class="rounded" alt="...">
-                <h4 class="font-weight-bold">SNSで作ったものを公開</h4>
-                <p>SNSで公開して<br />多くの人に知ってもらいましょう</p>
               </div>
             </div>
-            <div class="col-lg-4 col-md-12" id="feature-item">
-              <div class="container text-center">
-                <img src="assets/star.png" class="rounded" alt="...">
-                <h4 class="font-weight-bold">フィードバックをもらおう</h4>
-                <p>サービス、アプリを見た人から<br />フィードバックをもらえるかもしれません</p>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-12" id="feature-item">
-              <div class="container text-center">
-                <img src="assets/talk.png" class="rounded" alt="...">
-                <h4 class="font-weight-bold">ユーザーと繋がろう</h4>
-                <p>熱心なユーザーと繋がって<br />サービスをより良いものにしましょう</p>
-              </div>
+            <div class=" my-auto" id="top-main-image">
+              <img src="<%= asset_path "top-main.png" %>" class="img-fluid" style="border-radius: 20px;">
             </div>
           </div>
         </div>
       <% end %>
     <% else %>
-      <div class="row">
-        <div class="container-fluid bg-white" id="main-container">
-          <h1 class="text-center font-weight-bold">作ったものを<br />SNSで共有しよう！</h1>
-          <p class="w-75 pb-5 text-center mx-auto" id="description">
-            BrushAppは自分が作ったものをSNSで簡単にシェア、フィードバック管理ができるサービスです。
-          </p>
-          <div class="text-center">
-            <%= link_to user_twitter_omniauth_authorize_path do %>
-              <div class="btn btn-info" id="main-container-button">
-                Twitterでログイン
+      <div class="container-fluid" id="main-container">
+        <div class="row justify-content-center">
+          <div class="my-auto" id="top-text-content">
+            <div class="container p-0" id="top-text-content-container">
+              <h3 class="text-center font-weight-bold">フィードバックをもらって<br />より良いプロダクトを作ろう</h3>
+              <p class="text-center" id="description">
+                プロダクトをSNSでシェアし、<br />もらったフィードバックを管理しましょう
+              </p>
+              <div class="text-center">
+                <%= link_to user_twitter_omniauth_authorize_path do %>
+                  <div class="btn btn-info" id="main-container-button">
+                    Twitterでログイン
+                  </div>
+                <% end %>
               </div>
-            <% end %>
+            </div>
+          </div>
+          <div id="top-main-image">
+            <img src="<%= asset_path "top-main.png" %>" class="img-fluid" style="border-radius: 20px;">
           </div>
         </div>
       </div>
 
-      <hr />
+      <hr class="mb-5"/>
 
       <div class="container">
         <div class="row justify-content-center" id="feature-section">
           <div class="col-lg-4 col-md-12" id="feature-item">
             <div class="container text-center">
-              <img src="assets/release.png" class="rounded" alt="...">
-              <h4 class="font-weight-bold">SNSで作ったものを公開</h4>
-              <p>SNSで公開して<br />多くの人に知ってもらいましょう</p>
+              <img src="<%= asset_path "release.png" %>" class="rounded" alt="...">
+              <h4 class="font-weight-bold">プロダクトをSNSにシェア</h4>
+              <p>ボタンを押すだけで<br />簡単にSNSに投稿できます</p>
             </div>
           </div>
           <div class="col-lg-4 col-md-12" id="feature-item">
             <div class="container text-center">
-              <img src="assets/star.png" class="rounded" alt="...">
+              <img src="<%= asset_path "star.png" %>" class="rounded" alt="...">
               <h4 class="font-weight-bold">フィードバックをもらおう</h4>
-              <p>サービス、アプリを見た人から<br />フィードバックをもらえるかもしれません</p>
+              <p>プロダクトをSNSでシェアして<br />フィードバックをもらいましょう</p>
             </div>
           </div>
           <div class="col-lg-4 col-md-12" id="feature-item">
             <div class="container text-center">
-              <img src="assets/talk.png" class="rounded" alt="...">
+              <img src="<%= asset_path "talk.png" %>" class="rounded" alt="...">
               <h4 class="font-weight-bold">ユーザーと繋がろう</h4>
-              <p>熱心なユーザーと繋がって<br />サービスをより良いものにしましょう</p>
+              <p>さらにユーザーと話したい場合は<br />SNS上でやり取り出来ます</p>
             </div>
           </div>
         </div>

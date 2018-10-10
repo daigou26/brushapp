@@ -1,12 +1,24 @@
 <nav class="navbar row navbar-dark bg-light">
   <div class="container-fluid d-flex justify-content-between">
-    <a class="navbar-brand text-dark" href="/">
-      <h3 class="my-auto">BrushApp</h3>
-    </a>
+      <% if controller.controller_name == "feedbacks" && controller.action_name == "new" %>
+        <% if user_signed_in? && current_user.posts.exists?(id: @post.id) %>
+          <a class="navbar-brand ml-2 btn" onclick="openNav()" id="menu-toggle">
+            <img src="<%= asset_path "menu.png" %>" style="width: 20px; height: 20px;"/>
+          </a>
+        <% else %>
+          <a class="navbar-brand text-dark" href="/">
+            <h3 class="my-auto">BrushApp</h3>
+          </a>
+        <% end %>
+      <% else %>
+        <a class="navbar-brand text-dark" href="/">
+          <h3 class="my-auto">BrushApp</h3>
+        </a>
+      <% end %>
 
     <% if user_signed_in? %>
       <div class="btn-group">
-        <%= link_to new_user_post_path(:user_id => current_user[:nickname]), :class => 'my-auto' do %>
+        <%= link_to "/users/#{current_user[:nickname]}/posts/new", :class => 'my-auto' do %>
           <div class="btn font-weight-bold" id="navbar-post-button">
             投稿する
           </div>
@@ -28,8 +40,8 @@
           </a>
           <% if current_user.notifications.count != 0 %>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="right: 0; left: auto; width: 300px;">
-              <% current_user.notification_feed.order(created_at: :desc).limit(5).each do |notification| %>
-                <%= link_to user_post_path(:user_id => current_user[:nickname], :id => notification.post_id), class: "dropdown-item" do %>
+              <% current_user.notification_feed.limit(5).each do |notification| %>
+                <%= link_to "/users/#{current_user[:nickname]}/posts/#{notification.post_id}/feedbacks", class: "dropdown-item" do %>
                   <img src="<%= User.find(notification.feedback_user_id).image %>" class="rounded-circle align-top" id="profile-image">
                   <div id="notification-text">
                       <span class="align-top" id="content">
@@ -61,7 +73,6 @@
             <img src="<%= current_user[:image] %>" class="rounded-circle" id="profile-image">
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="right: 0; left: auto;">
-            <a class="dropdown-item" href="">マイベージ</a>
             <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
               ログアウト
             <% end %>
@@ -72,3 +83,26 @@
     <% end %>
   </div>
 </nav>
+
+
+<script>
+  var $win = $(window);
+
+  $win.on('load resize', function() {
+    if (window.matchMedia('(max-width:767px)').matches) {
+      closeNav();
+    } else {
+      openNav();
+    }
+  });
+
+  function openNav() {
+      $("#sidenav").show();
+      $("#body-overlay").show();
+  }
+
+  function closeNav() {
+    $("#sidenav").hide();
+    $("#body-overlay").hide();
+}
+</script>

@@ -12,7 +12,7 @@ class User < ApplicationRecord
   end
 
   def notification_feed
-    Notification.where("user_id = ?", id).order(created_at: :desc)
+    Notification.where("user_id = ?", id).order("created_at desc")
   end
 
   def self.find_for_oauth(auth)
@@ -28,6 +28,26 @@ class User < ApplicationRecord
         name: auth.info.name,
         nickname: auth.info.nickname,
         )
+    else
+      isChanged = false
+      if user[:image] != auth.info.image
+        user[:image] = auth.info.image
+        isChanged = true
+      end
+
+      if user[:name] != auth.info.name
+        user[:name] = auth.info.name
+        isChanged = true
+      end
+
+      if user[:nickname] != auth.info.nickname
+        user[:nickname] = auth.info.nickname
+        isChanged = true
+      end
+
+      if isChanged
+        user.save!
+      end
     end
 
     user

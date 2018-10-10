@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
   before_action :user_signed_in?, only: [:new, :edit, :update, :create, :destroy]
-  before_action :correct_user,   only: :destroy
+  before_action :correct_user, only: :destroy
 
   def new
-    if current_user[:nickname] == params[:nickname]
+    if user_signed_in? && current_user[:nickname] == params[:nickname]
       @post = current_user.posts.build
     else
       redirect_to root_path
@@ -11,7 +11,15 @@ class PostsController < ApplicationController
   end
 
   def edit
-    if current_user[:nickname] == params[:nickname]
+    if user_signed_in? && current_user[:nickname] == params[:nickname]
+      @post = Post.find(params[:id])
+    else
+      redirect_to root_path
+    end
+  end
+
+  def show
+    if user_signed_in? && current_user[:nickname] == params[:user_id]
       @post = Post.find(params[:id])
     else
       redirect_to root_path
@@ -19,33 +27,41 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.build(post_params)
-    @post.new_feedback_count = 0
-    @post.rating_count = 0
-    @post.review_count = 0
-    @post.rating = 0
-    if @post.save
-      redirect_to controller: 'feedbacks', action: 'new', nickname: current_user[:nickname], id: @post[:id]
+    if user_signed_in? && current_user[:nickname] == params[:nickname]
+      @post = current_user.posts.build(post_params)
+      @post.new_feedback_count = 0
+      @post.rating_count = 0
+      @post.review_count = 0
+      @post.rating = 0
+      if @post.save
+        redirect_to action: 'show', user_id: current_user[:nickname], id: @post[:id]
+      else
+        render 'new'
+      end
     else
-      render 'new'
+      redirect_to root_path
     end
   end
 
   def update
-    @post = Post.find(params[:id])
-    @post.title = post_params[:title]
-    @post.content = post_params[:content]
-    @post.url = post_params[:url]
+    if user_signed_in? && current_user[:nickname] == params[:nickname]
+      @post = Post.find(params[:id])
+      @post.title = post_params[:title]
+      @post.content = post_params[:content]
+      @post.url = post_params[:url]
 
-    if post_params[:image] != nil
-      @post.remove_image!
-      @post.image = post_params[:image]
-    end
+      if post_params[:image] != nil
+        @post.remove_image!
+        @post.image = post_params[:image]
+      end
 
-    if @post.save
-      redirect_to controller: 'feedbacks', action: 'new', nickname: current_user[:nickname], id: @post[:id]
+      if @post.save
+        redirect_to action: 'show', user_id: current_user[:nickname], id: @post[:id]
+      else
+        render 'edit'
+      end
     else
-      render 'edit'
+      redirect_to root_path
     end
   end
 
@@ -62,7 +78,11 @@ class PostsController < ApplicationController
     end
 
     def correct_user
-      @post = current_user.posts.find_by(id: params[:id])
-      redirect_to root_url if @post.nil?
+      if user_signed_in?
+        @post = current_user.posts.find_by(id: params[:id])
+        redirect_to root_url if @post.nil?
+      else
+        redirect_to root_path
+      end
     end
 end
