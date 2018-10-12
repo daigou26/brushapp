@@ -20,7 +20,7 @@
           <%= paginate @feed_items %>
         </div>
       <% else %>
-        <div class="container-fluid" id="main-container">
+        <!-- <div class="container-fluid" id="main-container">
           <div class="row justify-content-center">
             <div class="my-auto" id="top-text-content">
               <div class="container p-0" id="top-text-content-container">
@@ -41,16 +41,56 @@
               <img src="<%= asset_path "top-main.png" %>" class="img-fluid" style="border-radius: 20px;">
             </div>
           </div>
+        </div> -->
+
+        <div class="container-fluid" id="main-container">
+          <div class="row">
+            <div class="my-auto mx-auto" id="top-text-content">
+              <div class="container p-0" id="top-text-content-container">
+                <h3 class="text-center font-weight-bold">フィードバックをもらってより良いプロダクトを作ろう</h3>
+                <p class="text-center" id="description">
+                  プロダクトを簡単にSNSにシェアでき、<br />もらったフィードバックを管理できます
+                </p>
+                <div class="text-center">
+                  <%= link_to "/users/#{current_user[:nickname]}/posts/new" do %>
+                    <div class="btn btn-info" id="main-container-button">
+                      投稿する
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="m-0"/>
+
+        <div class="container-fluid" id="top-feedback-container">
+          <div class="row justify-content-center">
+
+            <div id="top-main-image">
+              <img src="<%= asset_path "top-main.png" %>" class="img-fluid my-auto" style="border-radius: 10px;">
+            </div>
+            <div class="my-auto" id="top-text-content">
+              <div class="container p-0" id="top-text-content-container">
+                <p class="font-weight-bold" id="title">フィードバック管理</p>
+                <p id="description">
+                  管理画面でフィードバック一覧を見ることができます<br />
+                  今後、ソート機能など様々な機能を追加する予定です
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       <% end %>
     <% else %>
       <div class="container-fluid" id="main-container">
-        <div class="row justify-content-center">
-          <div class="my-auto" id="top-text-content">
+        <div class="row">
+          <div class="my-auto mx-auto" id="top-text-content">
             <div class="container p-0" id="top-text-content-container">
-              <h3 class="text-center font-weight-bold">フィードバックをもらって<br />より良いプロダクトを作ろう</h3>
+              <h3 class="text-center font-weight-bold">フィードバックをもらってより良いプロダクトを作ろう</h3>
               <p class="text-center" id="description">
-                プロダクトをSNSでシェアし、<br />もらったフィードバックを管理しましょう
+                プロダクトを簡単にSNSにシェアでき、<br />もらったフィードバックを管理できます
               </p>
               <div class="text-center">
                 <%= link_to user_twitter_omniauth_authorize_path do %>
@@ -61,15 +101,44 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <hr class="m-0"/>
+
+      <div class="container-fluid" id="top-feedback-container">
+        <div class="row justify-content-center">
+
           <div id="top-main-image">
-            <img src="<%= asset_path "top-main.png" %>" class="img-fluid" style="border-radius: 20px;">
+            <img src="<%= asset_path "top-main.png" %>" class="img-fluid my-auto" style="border-radius: 10px;">
+          </div>
+          <div class="my-auto" id="top-text-content">
+            <div class="container p-0" id="top-text-content-container">
+              <p class="font-weight-bold" id="title">フィードバック管理</p>
+              <p id="description">
+                管理画面でフィードバック一覧を見ることができます<br />
+                今後、ソート機能など様々な機能を追加する予定です
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
       <hr class="mb-5"/>
 
-      <div class="container">
+      <div class="container mb-5">
+        <div class="text-center">
+          <h3 class="text-center font-weight-bold">より良いプロダクトを作ろう</h3>
+
+          <%= link_to user_twitter_omniauth_authorize_path do %>
+            <div class="btn btn-info" id="main-container-button">
+              Twitterでログイン
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- <div class="container">
         <div class="row justify-content-center" id="feature-section">
           <div class="col-lg-4 col-md-12" id="feature-item">
             <div class="container text-center">
@@ -93,7 +162,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     <% end %>
   </div>
 </div>

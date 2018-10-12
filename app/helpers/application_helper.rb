@@ -4,7 +4,7 @@ module ApplicationHelper
       site: 'BrushApp',
       reverse: true,
       charset: 'utf-8',
-      title: 'プロダクトをSNSに簡単にシェアでき、フィードバックが管理できるサービス',
+      title: 'プロダクトをSNSに簡単にシェアでき、フィードバック管理ができるサービス',
       description: 'プロダクトを簡単SNSにシェアすることができます。また、もらったフィードバックを管理することができます。',
       canonical: request.original_url,
       separator: '|',
