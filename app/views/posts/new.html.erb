@@ -33,7 +33,7 @@
       <div class="container-fluid" id="content-form">
         <div class="col-md-6 form-group mx-auto">
           <label>説明</label>
-          <%= f.text_area :content, value: @post.content, class: "form-control", placeholder: "例： プロダクトをSNSに簡単にシェアでき、フィードバック管理ができるサービス" %>
+          <%= f.text_area :content, value: @post.content, class: "form-control", placeholder: "例： プロダクトをSNSに簡単にシェアでき、もらったフィードバックを管理できるサービス" %>
           <p class="text-danger">
             <%= @post.errors.messages[:content][0] if @post.errors.messages[:content].any? %>
           </p>
