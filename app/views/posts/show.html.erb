@@ -1,5 +1,5 @@
 <% set_meta_tags title: @post.title, description: @post.content,
-og: { url: "https://brushapp.me/users/#{User.find(@post.user_id).nickname}/posts/#{@post.id}/feedback",
+og: { url: "https://brushapp.me/users/#{User.find(@post.user_id).nickname}/posts/#{@post.id}/feedbacks",
 title: @post.title, description: @post.content, image: { url: @post.image.url} },
 twitter: { title: @post.title, description: @post.content, image: @post.image.url} %>
 
@@ -40,7 +40,7 @@ twitter: { title: @post.title, description: @post.content, image: @post.image.ur
         <div class="container-fluid">
           <div class="container" id="post-detail-container">
             <img src="<%= @post.image.url %>" class="img-fluid">
-            <div class="text-left">
+            <div class="text-left mt-3">
               <span id="post-title"><%= @post.title %></span>
             </div>
             <div class="text-left">
@@ -66,7 +66,7 @@ twitter: { title: @post.title, description: @post.content, image: @post.image.ur
                   サービス・アプリのページへ
                 </div>
               <% end %>
-              <%= link_to "https://twitter.com/intent/tweet?text="+u("#{@post.content}\n")+"&url="+"https://brushapp.me/users/#{User.find(@post.user_id).nickname}/posts/#{@post.id}/feedback", :target=>["_blank"] do %>
+              <%= link_to "https://twitter.com/intent/tweet?text="+u("#{@post.title}をリリースしました！\n")+"&url="+"https://brushapp.me/users/#{User.find(@post.user_id).nickname}/posts/#{@post.id}/feedbacks", :target=>["_blank"] do %>
                 <div class="btn btn-info" id="post-detail-tweet-button">
                   Twitterに投稿
                 </div>

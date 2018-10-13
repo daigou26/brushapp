@@ -1,6 +1,6 @@
 <nav class="navbar row navbar-dark bg-light">
   <div class="container-fluid d-flex justify-content-between">
-      <% if controller.controller_name == "feedbacks" && controller.action_name == "new" %>
+      <% if (controller.controller_name == "feedbacks" && controller.action_name == "new") || (controller.controller_name == "posts" && controller.action_name == "show") %>
         <% if user_signed_in? && current_user.posts.exists?(id: @post.id) %>
           <a class="navbar-brand ml-2 btn" onclick="openNav()" id="menu-toggle">
             <img src="<%= asset_path "menu.png" %>" style="width: 20px; height: 20px;"/>
