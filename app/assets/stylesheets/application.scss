@@ -24,18 +24,14 @@ body {
 div#notification-text {
   font-size: 14px;
   margin-left: 10px;
-  max-width: 200px;
   word-wrap: break-word;
   white-space: normal;
-  display: inline-block;
 }
 div#notification-page-text {
   font-size: 14px;
   margin-left: 10px;
-  max-width: 200px;
   word-wrap: break-word;
   white-space: normal;
-  display: inline-block;
 }
 div#notification-text div#timestamp { color: #888888; font-size: 12px; margin-top: 4px;}
 div#notification-page-text div#timestamp { color: #888888; font-size: 12px; margin-top: 4px;}
@@ -55,6 +51,10 @@ div#edit-post { font-size: 14px;}
     h3 { font-size: 14pt;}
     h4 { font-size: 14pt;}
 
+    .text-danger { font-size: 12px;}
+    .dropdown-menu { width: 200px;}
+    a.dropdown-item { padding: 10px;}
+
     // shared
     img#profile-image {width: 30px; height: 30px;}
     div#footer a { font-size: 12px;}
@@ -70,18 +70,17 @@ div#edit-post { font-size: 14px;}
     }
     div#notification-text {
       font-size: 12px;
+      // max-width: 120px;
     }
     // top-page
 
     div#main-container { margin-top: 50px; margin-bottom: 50px;}
-    div#top-text-content div#top-text-content-container { width: 350px;}
-    p#description { font-size: 12pt; margin-top: 40px;}
+    p#description { font-size: 10pt; margin-top: 40px;}
 
-    div#top-feedback-container { max-width: 350px; margin-top: 30px; margin-bottom: 30px;}
-    div#top-feedback-container div#top-text-content-container { width: 350px;}
-    div#top-feedback-container p#title { margin-top: 20px; font-size: 16px;}
-    div#top-feedback-container p#description { font-size: 14px;color: #999999; margin-top: 10px;}
-    div#top-main-image img { width: 350px; height: 200px; margin-top: 50px;}
+    div#top-feedback-container { margin-top: 30px; margin-bottom: 30px;}
+    div#top-feedback-container p#title { margin-top: 20px; font-size: 14px;}
+    div#top-feedback-container p#description { font-size: 12px;color: #999999; margin-top: 10px;}
+    div#top-main-image img { height: 200px; margin-top: 50px;}
 
     div#main-container-button {
       font-size: 14px;
@@ -91,10 +90,6 @@ div#edit-post { font-size: 14px;}
       padding-right: 15px;
     }
 
-    div#feature-item { margin-bottom: 50px;}
-    div#feature-item p { font-size: 14px;}
-    div#feature-item img {width: 65px; height: 65px;}
-    div#feature-item h4 {margin-top: 20px; margin-bottom: 16px;}
     div#post-feed-item { margin-bottom: 20px;}
     div#post-feed-item span#post-title {
       width:230px;
@@ -110,9 +105,21 @@ div#edit-post { font-size: 14px;}
     div#title-form { margin-top: 25px;}
     div#content-form { margin-top: 25px;}
     div#url-form { margin-top: 25px; margin-bottom: 25px;}
+    p#new-text { font-size: 14px;}
+    #image_preview { height: 200px;}
+    span#file-text { font-size: 12px;}
+    .form-control { font-size: 12px;}
 
     // post-detail-page
     div#post-detail-container { margin-top: 10px;}
+    div#post-detail-container div#feedback-username {
+      font-size: 12px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      -webkit-text-overflow:ellipsis;
+      -o-text-overflow: ellipsis;
+    }
     div#post-detail-container span#post-title {
       font-size: 22px;
       word-break: break-all;
@@ -141,12 +148,8 @@ div#edit-post { font-size: 14px;}
     p#feedback-content { font-size: 14px;}
     div#feedback-username {
       font-size: 12px;
-      width:150px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      -webkit-text-overflow:ellipsis;
-      -o-text-overflow: ellipsis;
+      word-wrap: break-word;
+      white-space: normal;
     }
     div#feedback-timestamp { color: #888888; font-size: 10px;}
 
@@ -235,6 +238,8 @@ div#edit-post { font-size: 14px;}
     h3 { font-size: 16pt;}
     h4 { font-size: 16pt;}
 
+    .dropdown-menu { width: 300px;}
+
     // shared
     img#profile-image {width: 30px; height: 30px;}
 
@@ -249,7 +254,6 @@ div#edit-post { font-size: 14px;}
     }
     span#notification-text {
       font-size: 14px;
-      word-break: break-all;
     }
     // top-page
     div#main-container { margin-top: 100px; margin-bottom: 120px;}
@@ -286,9 +290,18 @@ div#edit-post { font-size: 14px;}
     div#title-form { margin-top: 50px;}
     div#content-form { margin-top: 25px;}
     div#url-form { margin-top: 25px; margin-bottom: 50px;}
+    #image_preview { width:600px; height: 300px;}
 
     // post-detail-page
     div#post-detail-container { margin-top: 25px; max-width: 600px;}
+    div#post-detail-container div#feedback-username {
+      font-size: 14px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      -webkit-text-overflow:ellipsis;
+      -o-text-overflow: ellipsis;
+    }
     div#post-detail-container span#post-title {
        font-size: 26px;
        word-break: break-all;
@@ -310,12 +323,8 @@ div#edit-post { font-size: 14px;}
     p#feedback-content { font-size: 16px;}
     div#feedback-username {
       font-size: 14px;
-      width:300px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      -webkit-text-overflow:ellipsis;
-      -o-text-overflow: ellipsis;
+      word-wrap: break-word;
+      white-space: normal;
     }
     div#feedback-timestamp { color: #888888; font-size: 10px;}
 
@@ -414,6 +423,8 @@ div#edit-post { font-size: 14px;}
       border-radius: 5px;
     }
 
+    .dropdown-menu { width: 300px;}
+
     // top-page
     div#main-container { margin-top: 100px; margin-bottom: 120px;}
     div#top-text-content div#top-text-content-container { width: 550px;}
@@ -457,9 +468,18 @@ div#edit-post { font-size: 14px;}
     div#content-form { margin-top: 25px;}
     div#url-form { margin-top: 25px; margin-bottom: 50px;}
     div#post-button { font-size: 20px; margin-bottom: 50px;}
+    #image_preview { width:600px; height: 300px;}
 
     // post-detail-page
     div#post-detail-container { margin-top: 25px; max-width: 600px;}
+    div#post-detail-container div#feedback-username {
+      font-size: 14px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      -webkit-text-overflow:ellipsis;
+      -o-text-overflow: ellipsis;
+    }
     div#post-detail-container span#post-title {
       font-size: 26px;
       word-break: break-all;
@@ -483,12 +503,8 @@ div#edit-post { font-size: 14px;}
     p#feedback-content { font-size: 16px;}
     div#feedback-username {
       font-size: 14px;
-      width:300px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      -webkit-text-overflow:ellipsis;
-      -o-text-overflow: ellipsis;
+      word-wrap: break-word;
+      white-space: normal;
     }
     div#feedback-timestamp { color: #888888; font-size: 10px;}
 
