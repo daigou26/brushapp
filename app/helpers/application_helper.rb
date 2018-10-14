@@ -29,7 +29,7 @@ module ApplicationHelper
         card: 'summary_large_image',
         site: '@brushapp_me',
         title: 'BrushApp',
-        description: 'プロダクトをSNSに簡単にシェアでき、もらったフィードバック管理できるサービス',
+        description: 'プロダクトをSNSに簡単にシェアでき、もらったフィードバックを管理できるサービス',
         image: image_url('brushapp-logo.png'),
       }
     }
