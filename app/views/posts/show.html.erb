@@ -63,7 +63,7 @@ twitter: { title: @post.title, description: @post.content, image: @post.image.ur
             <div class="d-flex justify-content-between">
               <%= link_to @post.url, :target=>["_blank"] do %>
                 <div class="btn btn-outline-info" id="url-button">
-                  サービス・アプリのページへ
+                  プロダクトを見る
                 </div>
               <% end %>
               <%= link_to "https://twitter.com/intent/tweet?text="+u("#{@post.title}をリリースしました！\n")+"&url="+"https://brushapp.me/users/#{User.find(@post.user_id).nickname}/posts/#{@post.id}/feedbacks", :target=>["_blank"] do %>
