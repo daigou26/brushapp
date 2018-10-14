@@ -19,7 +19,7 @@ module ApplicationHelper
         description: 'プロダクトをSNSに簡単にシェアでき、もらったフィードバックを管理できるサービス',
         url: request.original_url,
         image: {
-          url: image_url('brushapp.png'),
+          url: image_url('brushapp-logo.png'),
           width: 1200,
           height: 630,
         },
@@ -30,7 +30,7 @@ module ApplicationHelper
         site: '@brushapp_me',
         title: 'BrushApp',
         description: 'プロダクトをSNSに簡単にシェアでき、もらったフィードバック管理できるサービス',
-        image: image_url('brushapp.png'),
+        image: image_url('brushapp-logo.png'),
       }
     }
   end
