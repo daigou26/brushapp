@@ -39,54 +39,41 @@ twitter: { title: @post.title, description: @post.content, image: @post.image.ur
 
       <!-- Page Content -->
       <div id="page-content">
-          <div class="container-fluid">
-            <div class="mb-5" style="font-size: 20px;">
-              <a href="/" >
-                Projects
-              </a>
-              /
-              <a href="<%= user_post_path(:user_id => current_user[:nickname], :id => @post.id) %>">
-                <%= @post.title %>
-              </a>
-              <% if @post.review_count != 0 %>
-                (<%= @post.review_count %>)
-              <% end %>
-            </div>
-            <% if @feed_items.any?  %>
-              <div class="container">
-                <%= render @feed_items %>
-              </div>
-              <%= paginate @feed_items %>
-            <% else %>
-              <div class="container text-center">
-                <p class="mt-5" style="font-size: 20px; color: #aaaaaa;">
-                  まだフィードバックがありません
-                </p>
-              </div>
-            <% end %>
+        <div class="mb-5" style="font-size: 20px;">
+          <a href="/" >
+            Projects
+          </a>
+          /
+          <a href="<%= user_post_path(:user_id => current_user[:nickname], :id => @post.id) %>">
+            <%= @post.title %>
+          </a>
+          <% if @post.review_count != 0 %>
+            (<%= @post.review_count %>)
+          <% end %>
+        </div>
+        <% if @feed_items.any?  %>
+          <div class="container p-0">
+            <%= render @feed_items %>
           </div>
+          <%= paginate @feed_items %>
+        <% else %>
+          <div class="container p-0 text-center">
+            <p class="mt-5" style="font-size: 20px; color: #aaaaaa;">
+              まだフィードバックがありません
+            </p>
+          </div>
+        <% end %>
       </div>
     </div>
   <% else %>
 
     <div class="container" id="post-detail-container">
       <div class="mb-2">
-        <div class="d-flex justify-content-between">
-          <div>
-            <%= link_to "https://twitter.com/#{User.find(@post.user_id).nickname}", :class => 'btn', :style => 'padding: 0px;', :target=>["_blank"]  do %>
-              <img src="<%= User.find(@post.user_id).image %>" class="rounded-circle" id="profile-image">
-            <% end %>
-            <span class="align-middle " id="feedback-username"><%= User.find(@post.user_id).name %></span>
-          </div>
-          <% if user_signed_in? %>
-            <% if @post.user_id == current_user.id %>
-              <%= link_to edit_user_post_path(:user_id => current_user[:nickname], :id => @post.id), :class => 'my-auto' do %>
-                <div class="btn text-info" id="edit-post">
-                  投稿を編集
-                </div>
-              <% end %>
-            <% end %>
+        <div class="d-flex flex-row">
+          <%= link_to "https://twitter.com/#{User.find(@post.user_id).nickname}", :class => 'btn', :style => 'padding: 0px;', :target=>["_blank"]  do %>
+            <img src="<%= User.find(@post.user_id).image %>" class="rounded-circle" id="profile-image">
           <% end %>
+          <div class="ml-3 my-auto" id="feedback-username"><%= User.find(@post.user_id).name %></div>
         </div>
       </div>
       <img src="<%= @post.image.url %>" class="img-fluid">

@@ -1,5 +1,5 @@
 <nav class="navbar row navbar-dark bg-light">
-  <div class="container-fluid d-flex justify-content-between">
+  <div class="container-fluid d-flex justify-content-between p-0">
       <% if (controller.controller_name == "feedbacks" && controller.action_name == "new") || (controller.controller_name == "posts" && controller.action_name == "show") %>
         <% if user_signed_in? && current_user.posts.exists?(id: @post.id) %>
           <a class="navbar-brand ml-2 btn" onclick="openNav()" id="menu-toggle">
@@ -39,21 +39,23 @@
             <% end %>
           </a>
           <% if current_user.notifications.count != 0 %>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="right: 0; left: auto; width: 300px;">
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="right: 0; left: auto;">
               <% current_user.notification_feed.limit(5).each do |notification| %>
                 <%= link_to "/users/#{current_user[:nickname]}/posts/#{notification.post_id}/feedbacks", class: "dropdown-item" do %>
-                  <img src="<%= User.find(notification.feedback_user_id).image %>" class="rounded-circle align-top" id="profile-image">
-                  <div id="notification-text">
-                      <span class="align-top" id="content">
-                        <% if notification.notification_type == "feedback" %>
-                          <%= User.find(notification.feedback_user_id).name %>があなたの投稿にフィードバックを送りました。
-                        <% elsif notification.notification_type == "rating" %>
-                          <%= User.find(notification.feedback_user_id).name %>があなたの投稿を評価しました。
-                        <% else %>
-                          <%= User.find(notification.feedback_user_id).name %>があなたの投稿にレビューを送りました。
-                        <% end %>
-                      </span>
-                    <div id="timestamp"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></div>
+                  <div class="d-flex justify-content-between">
+                    <img src="<%= User.find(notification.feedback_user_id).image %>" class="rounded-circle align-top" id="profile-image">
+                    <div id="notification-text">
+                        <span class="align-top" id="content">
+                          <% if notification.notification_type == "feedback" %>
+                            <%= User.find(notification.feedback_user_id).name %>があなたの投稿にフィードバックを送りました。
+                          <% elsif notification.notification_type == "rating" %>
+                            <%= User.find(notification.feedback_user_id).name %>があなたの投稿を評価しました。
+                          <% else %>
+                            <%= User.find(notification.feedback_user_id).name %>があなたの投稿にレビューを送りました。
+                          <% end %>
+                        </span>
+                      <div id="timestamp"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></div>
+                    </div>
                   </div>
                 <% end %>
                 <hr class="m-2" />
