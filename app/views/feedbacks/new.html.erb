@@ -1,5 +1,7 @@
+<% user = User.find(@post.user_id) %>
+
 <% set_meta_tags title: @post.title, description: @post.content,
-og: { url: "#{root_url(only_path: false)}users/#{User.find(@post.user_id).nickname}/posts/#{@post.id}/feedbacks",
+og: { url: "#{root_url(only_path: false)}users/#{user.nickname}/posts/#{@post.id}/feedbacks",
 title: @post.title, description: @post.content, image: { url: @post.image.url} },
 twitter: { title: @post.title, description: @post.content, image: @post.image.url} %>
 
@@ -70,10 +72,10 @@ twitter: { title: @post.title, description: @post.content, image: @post.image.ur
     <div class="container" id="post-detail-container">
       <div class="mb-2">
         <div class="d-flex flex-row">
-          <%= link_to "https://twitter.com/#{User.find(@post.user_id).nickname}", :class => 'btn', :style => 'padding: 0px;', :target=>["_blank"]  do %>
-            <img src="<%= User.find(@post.user_id).image %>" class="rounded-circle" id="profile-image">
+          <%= link_to "https://twitter.com/#{user.nickname}", :class => 'btn', :style => 'padding: 0px;', :target=>["_blank"]  do %>
+            <img src="<%= user.image %>" class="rounded-circle" id="profile-image">
           <% end %>
-          <div class="ml-3 my-auto" id="feedback-username"><%= User.find(@post.user_id).name %></div>
+          <div class="ml-3 my-auto" id="feedback-username"><%= user.name %></div>
         </div>
       </div>
       <img src="<%= @post.image.url %>" class="img-fluid">
@@ -116,7 +118,7 @@ twitter: { title: @post.title, description: @post.content, image: @post.image.ur
         <% end %>
         <% if user_signed_in? %>
           <% if @post.user_id == current_user.id %>
-            <%= link_to "https://twitter.com/intent/tweet?text="+u("#{@post.title}をリリースしました！\n")+"&url="+"#{root_url(only_path: false)}users/#{User.find(@post.user_id).nickname}/posts/#{@post.id}/feedbacks", :target=>["_blank"] do %>
+            <%= link_to "https://twitter.com/intent/tweet?text="+u("#{@post.title}をリリースしました！\n")+"&url="+"#{root_url(only_path: false)}users/#{user.nickname}/posts/#{@post.id}/feedbacks", :target=>["_blank"] do %>
               <div class="btn btn-info" id="post-detail-tweet-button">
                 Twitterに投稿
               </div>

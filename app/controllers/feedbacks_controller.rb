@@ -8,7 +8,9 @@ class FeedbacksController < ApplicationController
         @feedback = current_user.feedbacks.build
       else
         @post.new_feedback_count = 0
-        current_user.notifications.where('post_id = ?', params[:id]).update_all(:unread => false)
+        if current_user.notifications.where('post_id = ? and unread = ?', params[:id], true).exists?
+          current_user.notifications.where('post_id = ? and unread = ?', params[:id], true).update_all(:unread => false)
+        end
         @post.save
         @feed_items = @post.feed.page(params[:page]).per(10)
       end
