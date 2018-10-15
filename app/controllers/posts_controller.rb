@@ -68,6 +68,9 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.remove_image = true
+    if current_user.notifications.exists?(post_id: params[:id])
+      current_user.notifications.find_by(post_id: params[:id]).destroy
+    end
     @post.destroy
     redirect_to root_path
   end
