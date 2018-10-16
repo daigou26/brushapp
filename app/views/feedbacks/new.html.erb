@@ -93,7 +93,9 @@ twitter: { title: @post.title, description: @post.content, image: @post.image.ur
             <div class="container p-0">
               <%= render @feed_items %>
             </div>
-            <%= paginate @feed_items %>
+            <div class="mb-5">
+              <%= paginate @feed_items %>
+            </div>
           <% else %>
             <div class="container p-0 text-center">
               <p class="mt-5" style="font-size: 20px; color: #aaaaaa;">
