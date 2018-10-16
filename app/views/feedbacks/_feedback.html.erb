@@ -1,12 +1,13 @@
+<% user = User.find(feedback.user_id) %>
 <div class="text-left mt-2">
     <div class="container p-0">
       <div class="d-flex flex-row">
-        <%= link_to "https://twitter.com/#{User.find(feedback.user_id).nickname}", :class => 'btn align-top', :style => 'padding: 0px;'  do %>
-          <img src="<%= User.find(feedback.user_id).image %>" class="rounded-circle" id="feedback-profile-image">
+        <%= link_to "https://twitter.com/#{user.nickname}", :class => 'btn align-top', :style => 'padding: 0px;'  do %>
+          <img src="<%= user.image %>" class="rounded-circle" id="feedback-profile-image">
         <% end %>
 
         <div class="ml-3">
-          <div class="align-top" id="feedback-username"><%= User.find(feedback.user_id).name %></div>
+          <div class="align-top" id="feedback-username"><%= user.name %></div>
           <div id="feedback-timestamp"><%= feedback.created_at.strftime('%Y/%m/%d %H:%M') %></div>
           <div id='star_rating_<%= feedback.id %>'></div>
           <% if feedback.content? %>

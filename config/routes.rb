@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   patch '/users/:nickname/posts/:id/edit' => "posts#update"
   get '/users/:nickname/posts/:id/feedbacks' => "feedbacks#new"
   post '/users/:nickname/posts/:id/feedbacks' => "feedbacks#create"
+
   root 'top#index'
 
   devise_for :users, controllers: {

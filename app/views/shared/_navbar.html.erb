@@ -26,32 +26,33 @@
 
         <div class="nav-item dropdown my-auto">
           <a class="nav-link" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <% if current_user.notifications.where("unread = ?", true).count == 0 %>
-              <span class="badge badge-light btn" style="border-color: #1EA1B3; border-width: 2px;" id="notification-button">
-                <span style="color: #1EA1B3;">
-                  <%= current_user.notifications.where("unread = ?", true).count %>
-                </span>
-              </span>
-            <% else %>
+            <% if current_user.notifications.where("unread = ?", true).exists? %>
               <span class="badge badge-danger btn" id="notification-button">
                 <%= current_user.notifications.where("unread = ?", true).count %>
               </span>
+            <% else %>
+              <span class="badge badge-light btn" style="border-color: #1EA1B3; border-width: 2px;" id="notification-button">
+                <span style="color: #1EA1B3;">
+                  0
+                </span>
+              </span>
             <% end %>
           </a>
-          <% if current_user.notifications.count != 0 %>
+          <% if current_user.notifications.exists? %>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="right: 0; left: auto;">
               <% current_user.notification_feed.limit(5).each do |notification| %>
+                <% user = User.find(notification.feedback_user_id) %>
                 <%= link_to "/users/#{current_user[:nickname]}/posts/#{notification.post_id}/feedbacks", class: "dropdown-item" do %>
                   <div class="d-flex justify-content-between">
-                    <img src="<%= User.find(notification.feedback_user_id).image %>" class="rounded-circle align-top" id="profile-image">
+                    <img src="<%= user.image %>" class="rounded-circle align-top" id="profile-image">
                     <div id="notification-text">
                         <span class="align-top" id="content">
                           <% if notification.notification_type == "feedback" %>
-                            <%= User.find(notification.feedback_user_id).name %>があなたの投稿にフィードバックを送りました。
+                            <%= user.name %>があなたの投稿にフィードバックを送りました。
                           <% elsif notification.notification_type == "rating" %>
-                            <%= User.find(notification.feedback_user_id).name %>があなたの投稿を評価しました。
+                            <%= user.name %>があなたの投稿を評価しました。
                           <% else %>
-                            <%= User.find(notification.feedback_user_id).name %>があなたの投稿にレビューを送りました。
+                            <%= user.name %>があなたの投稿にレビューを送りました。
                           <% end %>
                         </span>
                       <div id="timestamp"><%= notification.created_at.strftime('%Y/%m/%d %H:%M') %></div>

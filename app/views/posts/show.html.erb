@@ -21,16 +21,11 @@ twitter: { title: @post.title, description: @post.content, image: @post.image.ur
             Project
           </span>
         </a>
+        <hr class="m-0 bg-secondary" />
         <a href="/users/<%= current_user[:nickname] %>/posts/<%= @post.id %>/feedbacks" id="feedback">
           <img src="<%= asset_path "feedback.png" %>" id="icon">
           <span class="align-middle" style="color: #cccccc;">
             Feedback
-          </span>
-        </a>
-        <a href="/users/<%= current_user[:nickname] %>/posts/<%= @post.id %>/edit" id="edit">
-          <img src="<%= asset_path "edit.png" %>" id="icon">
-          <span class="align-middle" style="color: #cccccc;">
-            Edit
           </span>
         </a>
       </div>
@@ -39,6 +34,13 @@ twitter: { title: @post.title, description: @post.content, image: @post.image.ur
       <div id="page-content">
         <div class="container-fluid">
           <div class="container" id="post-detail-container">
+            <div class="text-right">
+              <%= link_to "/users/#{current_user[:nickname]}/posts/#{@post.id}/edit", :class => "mt-3 mb-3" do %>
+                <div class="btn" id="url-button" style="color: #1EA1B3;">
+                  編集する
+                </div>
+              <% end %>
+            </div>
             <img src="<%= @post.image.url %>" class="img-fluid">
             <div class="text-left mt-3">
               <span id="post-title"><%= @post.title %></span>
