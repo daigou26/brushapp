@@ -7,9 +7,6 @@ Rails.application.routes.draw do
   patch '/users/:nickname/posts/:id/edit' => "posts#update"
   get '/users/:nickname/posts/:id/feedbacks' => "feedbacks#new"
   post '/users/:nickname/posts/:id/feedbacks' => "feedbacks#create"
-  # get '/users/:nickname/posts/:id/feedbacks/request' => "feedbacks#new"
-  # get '/users/:nickname/posts/:id/feedbacks/question' => "feedbacks#new"
-  # get '/users/:nickname/posts/:id/feedbacks/thought' => "feedbacks#new"
 
   root 'top#index'
 
