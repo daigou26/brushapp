@@ -8,9 +8,24 @@ class FeedbacksController < ApplicationController
         @feedback = current_user.feedbacks.build
       else
         @post.new_feedback_count = 0
-        current_user.notifications.where('post_id = ?', params[:id]).update_all(:unread => false)
+        if current_user.notifications.where('post_id = ? and unread = ?', params[:id], true).exists?
+          current_user.notifications.where('post_id = ? and unread = ?', params[:id], true).update_all(:unread => false)
+        end
         @post.save
-        @feed_items = @post.feed.page(params[:page]).per(10)
+
+        # tab切り替え
+        feedback_type = request.fullpath.split("/").last
+
+        if feedback_type.include?("type=request")
+          @feed_items = @post.request_feed.page(params[:page]).per(10)
+        elsif feedback_type.include?("type=question")
+          @feed_items = @post.question_feed.page(params[:page]).per(10)
+        elsif feedback_type.include?("type=thought")
+          @feed_items = @post.thought_feed.page(params[:page]).per(10)
+        else
+          @feed_items = @post.feed.page(params[:page]).per(10)
+        end
+
       end
     end
   end
@@ -54,6 +69,6 @@ class FeedbacksController < ApplicationController
 
   private
     def feedback_params
-      params.require(:feedback).permit(:content, :rating)
+      params.require(:feedback).permit(:content, :rating, :feedback_type)
     end
 end

@@ -9,7 +9,19 @@ class Post < ApplicationRecord
   validate :image_size
 
   def feed
-    Feedback.where("post_id = ?", id)
+    Feedback.where("post_id = ?", id).order("created_at desc")
+  end
+
+  def request_feed
+    Feedback.where("post_id = ? and feedback_type = ?", id, "request").order("created_at desc")
+  end
+
+  def question_feed
+    Feedback.where("post_id = ? and feedback_type = ?", id, "question").order("created_at desc")
+  end
+
+  def thought_feed
+    Feedback.where("post_id = ? and feedback_type = ?", id, "thought").order("created_at desc")
   end
 
   private

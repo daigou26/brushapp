@@ -141,7 +141,7 @@ div#edit-post { font-size: 14px;}
        padding-left: 10px;
        padding-right: 10px;
      }
-
+    div#nav-tab {font-size: 14px;}
     div#send-feedback-container { margin-top: 50px;}
     p#need-login { font-size: 12px;}
     div#twitter-login-button { font-size: 14px;}
@@ -533,14 +533,21 @@ div#edit-post { font-size: 14px;}
     }
 
     .sidenav a#brand {
-      font-size: 24px;
+      // font-size: 24px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      font-size: 22px;
       color: #f1f1f1;
       background-color: rgba(255,255,255,0.1);
     }
 
     .sidenav img#brand-icon {
-      width: 40px;
-      height: 40px;
+      width: 30px;
+      height: 30px;
+      margin-left: 5px;
+      margin-right: 5px;
+      // width: 20px;
+      // height: 20px;
     }
 
     .sidenav a#project {
