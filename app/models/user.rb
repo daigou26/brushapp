@@ -7,8 +7,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
 
+  # post feed
   def feed
-    Post.where("user_id = ?", id)
+    Post.where("user_id = ?", id).order("created_at desc")
   end
 
   def notification_feed

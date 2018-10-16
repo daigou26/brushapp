@@ -26,15 +26,15 @@
 
         <div class="nav-item dropdown my-auto">
           <a class="nav-link" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <% if current_user.notifications.where("unread = ?", true).count == 0 %>
-              <span class="badge badge-light btn" style="border-color: #1EA1B3; border-width: 2px;" id="notification-button">
-                <span style="color: #1EA1B3;">
-                  <%= current_user.notifications.where("unread = ?", true).count %>
-                </span>
-              </span>
-            <% else %>
+            <% if current_user.notifications.where("unread = ?", true).exists? %>
               <span class="badge badge-danger btn" id="notification-button">
                 <%= current_user.notifications.where("unread = ?", true).count %>
+              </span>
+            <% else %>
+              <span class="badge badge-light btn" style="border-color: #1EA1B3; border-width: 2px;" id="notification-button">
+                <span style="color: #1EA1B3;">
+                  0
+                </span>
               </span>
             <% end %>
           </a>

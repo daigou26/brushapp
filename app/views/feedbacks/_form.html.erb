@@ -5,6 +5,27 @@
   <% if user_signed_in? %>
     <%= form_for @feedback, :url => { :action => :create } do |f| %>
       <div class="row">
+        <div class="container mt-3 mb-3">
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-outline-info btn-sm active">
+              <%= f.radio_button :feedback_type, "all", :class => "form-check-input" %>
+              All
+            </label>
+            <label class="btn btn-outline-info btn-sm">
+              <%= f.radio_button :feedback_type, "request", :class => "form-check-input" %>
+              要望
+            </label>
+            <label class="btn btn-outline-info btn-sm">
+              <%= f.radio_button :feedback_type, "question", :class => "form-check-input" %>
+              質問
+            </label>
+            <label class="btn btn-outline-info btn-sm">
+              <%= f.radio_button :feedback_type, "thought", :class => "form-check-input" %>
+              感想
+            </label>
+          </div>
+        </div>
+
         <div class="ml-3 mt-3" id="star">
           <%= f.hidden_field :rating, id: :post_rating %>
         </div>

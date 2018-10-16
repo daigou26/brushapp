@@ -10,17 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_30_080656) do
+ActiveRecord::Schema.define(version: 2018_10_15_070506) do
 
   create_table "feedbacks", force: :cascade do |t|
     t.text "content"
     t.integer "rating"
-    t.integer "priority_rate"
+    t.integer "priority_value"
     t.integer "user_id"
     t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id", "created_at"], name: "index_feedbacks_on_post_id_and_created_at", order: { created_at: :desc }
+    t.string "feedback_type"
+    t.index ["post_id", "created_at"], name: "index_feedbacks_on_post_id_and_created_at"
+    t.index ["post_id", "feedback_type", "created_at"], name: "feedbacks_created_at_index", order: { created_at: :desc }
+    t.index ["post_id", "feedback_type", "priority_value"], name: "feedbacks_priority_index", order: { priority_value: :desc }
     t.index ["post_id"], name: "index_feedbacks_on_post_id"
     t.index ["user_id"], name: "index_feedbacks_on_user_id"
   end
@@ -33,6 +36,7 @@ ActiveRecord::Schema.define(version: 2018_09_30_080656) do
     t.string "feedback_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "created_at"], name: "index_notifications_on_user_id_and_created_at", order: { created_at: :desc }
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
