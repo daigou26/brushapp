@@ -52,7 +52,6 @@ div#edit-post { font-size: 14px;}
     h4 { font-size: 14pt;}
 
     .text-danger { font-size: 12px;}
-    .dropdown-menu { width: 200px;}
     a.dropdown-item { padding: 10px;}
 
     // shared
@@ -60,6 +59,7 @@ div#edit-post { font-size: 14px;}
     div#footer a { font-size: 12px;}
 
     // navbar
+    #notification-dropdown .dropdown-menu { width: 200px;}
     div#navbar-post-button { font-size: 12px;}
     span#notification-button {
       padding: 8px;
@@ -72,15 +72,15 @@ div#edit-post { font-size: 14px;}
       font-size: 12px;
       // max-width: 120px;
     }
-    // top-page
+    // mypage
 
     div#main-container { margin-top: 50px; margin-bottom: 50px;}
     p#description { font-size: 10pt; margin-top: 40px;}
 
-    div#top-feedback-container { margin-top: 30px; margin-bottom: 30px;}
-    div#top-feedback-container p#title { margin-top: 20px; font-size: 14px;}
-    div#top-feedback-container p#description { font-size: 12px;color: #999999; margin-top: 10px;}
-    div#top-main-image img { height: 200px; margin-top: 50px;}
+    div#mypage-feedback-container { margin-top: 30px; margin-bottom: 30px;}
+    div#mypage-feedback-container p#title { margin-top: 20px; font-size: 14px;}
+    div#mypage-feedback-container p#description { font-size: 12px;color: #999999; margin-top: 10px;}
+    div#mypage-main-image img { height: 200px; margin-top: 50px;}
 
     div#main-container-button {
       font-size: 14px;
@@ -238,12 +238,12 @@ div#edit-post { font-size: 14px;}
     h3 { font-size: 16pt;}
     h4 { font-size: 16pt;}
 
-    .dropdown-menu { width: 300px;}
 
     // shared
     img#profile-image {width: 30px; height: 30px;}
 
     // navbar
+    #notification-dropdown .dropdown-menu { width: 300px;}
     a#menu-toggle { visibility: hidden;}
     span#notification-button {
       padding: 8px;
@@ -255,9 +255,9 @@ div#edit-post { font-size: 14px;}
     span#notification-text {
       font-size: 14px;
     }
-    // top-page
+    // mypage
     div#main-container { margin-top: 100px; margin-bottom: 120px;}
-    div#top-text-content div#top-text-content-container { width: 500px;}
+    div#mypage-text-content div#mypage-text-content-container { width: 500px;}
     p#description { font-size: 12pt; margin-top: 50px;}
     div#main-container-button {
       font-size: 14px;
@@ -266,11 +266,11 @@ div#edit-post { font-size: 14px;}
       padding-left: 20px;
       padding-right: 20px;
     }
-    div#top-feedback-container { max-width: 400px; margin-top: 50px; margin-bottom: 50px;}
-    div#top-feedback-container div#top-text-content-container { width: 400px;}
-    div#top-feedback-container p#title { margin-top: 50px; font-size: 18px;}
-    div#top-feedback-container p#description { font-size: 14px;color: #999999; margin-top: 30px;}
-    div#top-main-image img { width: 400px; height: 300px;}
+    div#mypage-feedback-container { max-width: 400px; margin-top: 50px; margin-bottom: 50px;}
+    div#mypage-feedback-container div#mypage-text-content-container { width: 400px;}
+    div#mypage-feedback-container p#title { margin-top: 50px; font-size: 18px;}
+    div#mypage-feedback-container p#description { font-size: 14px;color: #999999; margin-top: 30px;}
+    div#mypage-main-image img { width: 400px; height: 300px;}
 
     div#feature-item { margin-bottom: 50px;}
     div#feature-item img {width: 75px; height: 75px;}
@@ -414,6 +414,7 @@ div#edit-post { font-size: 14px;}
     img#profile-image {width: 40px; height: 40px;}
 
     // navbar
+    #notification-dropdown .dropdown-menu { width: 300px;}
     a#menu-toggle { visibility: hidden;}
     span#notification-button {
       padding: 10px;
@@ -423,11 +424,9 @@ div#edit-post { font-size: 14px;}
       border-radius: 5px;
     }
 
-    .dropdown-menu { width: 300px;}
-
-    // top-page
+    // mypage
     div#main-container { margin-top: 100px; margin-bottom: 120px;}
-    div#top-text-content div#top-text-content-container { width: 550px;}
+    div#mypage-text-content div#mypage-text-content-container { width: 550px;}
     p#description { font-size: 12pt; margin-top: 50px;}
     div#main-container-button {
       font-size: 14px;
@@ -437,11 +436,11 @@ div#edit-post { font-size: 14px;}
       padding-right: 20px;
     }
 
-    div#top-feedback-container { max-width: 100%; margin-top: 100px; margin-bottom: 100px;}
-    div#top-feedback-container div#top-text-content-container { margin-left: 100px; width: 320px;}
-    div#top-feedback-container p#title { font-size: 18px;}
-    div#top-feedback-container p#description { font-size: 14px;color: #999999;}
-    div#top-main-image img { width: 400px; height: 300px;}
+    div#mypage-feedback-container { max-width: 100%; margin-top: 100px; margin-bottom: 100px;}
+    div#mypage-feedback-container div#mypage-text-content-container { margin-left: 100px; width: 320px;}
+    div#mypage-feedback-container p#title { font-size: 18px;}
+    div#mypage-feedback-container p#description { font-size: 14px;color: #999999;}
+    div#mypage-main-image img { width: 400px; height: 300px;}
 
     div#feature-item img {width: 75px; height: 75px;}
     div#feature-item h4 {margin-top: 48px; margin-bottom: 20px;}
