@@ -1,8 +1,6 @@
 class TopController < ApplicationController
   def index
-    if user_signed_in?
-      @post  = current_user.posts.build
-      @feed_items = current_user.feed.page(params[:page]).per(8)
-    end
+    @feed_items = Post.where("rating >= ?", 4).order("rating desc").limit(6)
+    @new_feed_items = Post.order("created_at desc").limit(6)
   end
 end

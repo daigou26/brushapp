@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_15_070506) do
+ActiveRecord::Schema.define(version: 2018_10_18_022538) do
 
   create_table "feedbacks", force: :cascade do |t|
     t.text "content"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 2018_10_15_070506) do
     t.integer "rating_count"
     t.integer "review_count"
     t.integer "new_feedback_count"
+    t.index ["created_at"], name: "index_posts_on_created_at", order: :desc
+    t.index ["rating"], name: "index_posts_on_rating", order: :desc
     t.index ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at", order: { created_at: :desc }
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
