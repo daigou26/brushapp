@@ -2,6 +2,13 @@ class PostsController < ApplicationController
   before_action :user_signed_in?, only: [:new, :edit, :update, :create, :destroy]
   before_action :correct_user, only: :destroy
 
+  def index
+    if user_signed_in?
+      @post  = current_user.posts.build
+      @feed_items = current_user.feed.page(params[:page]).per(8)
+    end
+  end
+
   def new
     if user_signed_in? && current_user[:nickname] == params[:nickname]
       @post = current_user.posts.build
@@ -72,7 +79,7 @@ class PostsController < ApplicationController
       current_user.notifications.find_by(post_id: params[:id]).destroy
     end
     @post.destroy
-    redirect_to root_path
+    redirect_to action: 'index', nickname: current_user[:nickname]
   end
 
   private
