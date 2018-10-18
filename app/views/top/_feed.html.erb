@@ -1,0 +1,36 @@
+<div class="col-md-6 col-lg-4 mb-5" id="post-feed-item">
+  <%= link_to "/users/#{User.find(post.user_id).nickname}/posts/#{post.id}/feedbacks", :class => 'btn p-0'  do %>
+    <img src="<%= post.image.url %>" class="img-fluid" id="post-image">
+    <div class="text-left">
+      <span class="text-dark " id="post-title"><%= post.title %></span>
+    </div>
+    <div class="text-left">
+      <span class="text-secondary" id="post-content"><%= post.content %></span>
+    </div>
+    <div class="text-left">
+      <% if post.rating != nil && post.rating != 0 %>
+        <span id="rating"><%= post.rating.round(1) %></span>
+      <% end %>
+      <span id='star_rating_<%= post.id %>_<%= type %>_feed'></span>
+      <span id="rating-count">
+        <% if post.rating_count == nil %>
+          0
+        <% else %>
+          <%= post.rating_count %>
+        <% end %>
+      </span>
+    </div>
+  <% end %>
+</div>
+
+<script>
+$('#star_rating_<%= post.id %>_<%= type %>_feed').raty('destroy');
+$('#star_rating_<%= post.id %>_<%= type %>_feed').raty({
+  size: 20,
+  number: 5,
+  starOff: '<%= asset_path "star-off-10.png" %>',
+  starOn: '<%= asset_path "star-on-10.png" %>',
+  readOnly: true,
+  score: <%= post.rating.round %>
+});
+</script>

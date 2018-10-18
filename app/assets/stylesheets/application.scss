@@ -35,9 +35,10 @@ div#notification-page-text {
 }
 div#notification-text div#timestamp { color: #888888; font-size: 12px; margin-top: 4px;}
 div#notification-page-text div#timestamp { color: #888888; font-size: 12px; margin-top: 4px;}
-div#footer { margin-top: 50px;}
+div#content { padding-bottom: 50px;}
 a#navbarDropdownMenuLink { padding: 0px;}
 div#navbar-post-button { padding: 0px; font-size: 14px; color: #555555;}
+div#navbar-login-button { padding: 0px; color: #555555;}
 span#rating { margin-right: 2px; font-size: 12px; color: #1C9B81;}
 span#rating-count { margin-left: 5px; font-size: 12px; color: #888888;}
 p#rating-count { font-size: 14px;}
@@ -52,7 +53,6 @@ div#edit-post { font-size: 14px;}
     h4 { font-size: 14pt;}
 
     .text-danger { font-size: 12px;}
-    .dropdown-menu { width: 200px;}
     a.dropdown-item { padding: 10px;}
 
     // shared
@@ -60,7 +60,10 @@ div#edit-post { font-size: 14px;}
     div#footer a { font-size: 12px;}
 
     // navbar
+    #notification-dropdown .dropdown-menu { width: 200px;}
     div#navbar-post-button { font-size: 12px;}
+    div#navbar-login-button { font-size: 14px; color: #555555;}
+
     span#notification-button {
       padding: 8px;
       margin-left: 10px;
@@ -72,15 +75,14 @@ div#edit-post { font-size: 14px;}
       font-size: 12px;
       // max-width: 120px;
     }
-    // top-page
-
+    // mypage
     div#main-container { margin-top: 50px; margin-bottom: 50px;}
     p#description { font-size: 10pt; margin-top: 40px;}
 
-    div#top-feedback-container { margin-top: 30px; margin-bottom: 30px;}
-    div#top-feedback-container p#title { margin-top: 20px; font-size: 14px;}
-    div#top-feedback-container p#description { font-size: 12px;color: #999999; margin-top: 10px;}
-    div#top-main-image img { height: 200px; margin-top: 50px;}
+    div#mypage-feedback-container { margin-top: 30px; margin-bottom: 30px;}
+    div#mypage-feedback-container p#title { margin-top: 20px; font-size: 14px;}
+    div#mypage-feedback-container p#description { font-size: 12px;color: #999999; margin-top: 10px;}
+    div#mypage-main-image img { height: 200px; margin-top: 50px;}
 
     div#main-container-button {
       font-size: 14px;
@@ -92,7 +94,19 @@ div#edit-post { font-size: 14px;}
 
     div#post-feed-item { margin-bottom: 20px;}
     div#post-feed-item span#post-title {
-      width:230px;
+      font-size: 18px;
+      width:240px;
+      margin-bottom: -5px;
+      display:inline-block;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      -webkit-text-overflow:ellipsis;
+      -o-text-overflow: ellipsis;
+    }
+    div#post-feed-item span#post-content {
+      font-size: 14px;
+      width:240px;
       display:inline-block;
       white-space:nowrap;
       overflow:hidden;
@@ -238,12 +252,12 @@ div#edit-post { font-size: 14px;}
     h3 { font-size: 16pt;}
     h4 { font-size: 16pt;}
 
-    .dropdown-menu { width: 300px;}
 
     // shared
     img#profile-image {width: 30px; height: 30px;}
 
     // navbar
+    #notification-dropdown .dropdown-menu { width: 300px;}
     a#menu-toggle { visibility: hidden;}
     span#notification-button {
       padding: 8px;
@@ -255,9 +269,9 @@ div#edit-post { font-size: 14px;}
     span#notification-text {
       font-size: 14px;
     }
-    // top-page
+    // mypage
     div#main-container { margin-top: 100px; margin-bottom: 120px;}
-    div#top-text-content div#top-text-content-container { width: 500px;}
+    div#mypage-text-content div#mypage-text-content-container { width: 500px;}
     p#description { font-size: 12pt; margin-top: 50px;}
     div#main-container-button {
       font-size: 14px;
@@ -266,17 +280,28 @@ div#edit-post { font-size: 14px;}
       padding-left: 20px;
       padding-right: 20px;
     }
-    div#top-feedback-container { max-width: 400px; margin-top: 50px; margin-bottom: 50px;}
-    div#top-feedback-container div#top-text-content-container { width: 400px;}
-    div#top-feedback-container p#title { margin-top: 50px; font-size: 18px;}
-    div#top-feedback-container p#description { font-size: 14px;color: #999999; margin-top: 30px;}
-    div#top-main-image img { width: 400px; height: 300px;}
+    div#mypage-feedback-container { max-width: 400px; margin-top: 50px; margin-bottom: 50px;}
+    div#mypage-feedback-container div#mypage-text-content-container { width: 400px;}
+    div#mypage-feedback-container p#title { margin-top: 50px; font-size: 18px;}
+    div#mypage-feedback-container p#description { font-size: 14px;color: #999999; margin-top: 30px;}
+    div#mypage-main-image img { width: 400px; height: 300px;}
 
     div#feature-item { margin-bottom: 50px;}
     div#feature-item img {width: 75px; height: 75px;}
     div#feature-item h4 {margin-top: 20px; margin-bottom: 16px;}
     div#post-feed-item span#post-title {
       font-size: 18px;
+      width:230px;
+      margin-bottom: -5px;
+      display:inline-block;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      -webkit-text-overflow:ellipsis;
+      -o-text-overflow: ellipsis;
+    }
+    div#post-feed-item span#post-content {
+      font-size: 14px;
       width:230px;
       display:inline-block;
       white-space:nowrap;
@@ -414,6 +439,7 @@ div#edit-post { font-size: 14px;}
     img#profile-image {width: 40px; height: 40px;}
 
     // navbar
+    #notification-dropdown .dropdown-menu { width: 300px;}
     a#menu-toggle { visibility: hidden;}
     span#notification-button {
       padding: 10px;
@@ -423,11 +449,21 @@ div#edit-post { font-size: 14px;}
       border-radius: 5px;
     }
 
-    .dropdown-menu { width: 300px;}
-
     // top-page
+    #top-page div#main-container { margin-top: 50px; margin-bottom: 50px;}
+    #top-page div#text-content-container { width: 600px;}
+    #top-page p#description { font-size: 12pt; margin-top: 50px;}
+    #top-page div#main-container-button {
+      font-size: 14px;
+      margin-top: 40px;
+      border-radius: 20px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    // mypage
     div#main-container { margin-top: 100px; margin-bottom: 120px;}
-    div#top-text-content div#top-text-content-container { width: 550px;}
+    div#mypage-text-content div#mypage-text-content-container { width: 600px;}
     p#description { font-size: 12pt; margin-top: 50px;}
     div#main-container-button {
       font-size: 14px;
@@ -437,18 +473,29 @@ div#edit-post { font-size: 14px;}
       padding-right: 20px;
     }
 
-    div#top-feedback-container { max-width: 100%; margin-top: 100px; margin-bottom: 100px;}
-    div#top-feedback-container div#top-text-content-container { margin-left: 100px; width: 320px;}
-    div#top-feedback-container p#title { font-size: 18px;}
-    div#top-feedback-container p#description { font-size: 14px;color: #999999;}
-    div#top-main-image img { width: 400px; height: 300px;}
+    div#mypage-feedback-container { max-width: 100%; margin-top: 100px; margin-bottom: 100px;}
+    div#mypage-feedback-container div#mypage-text-content-container { margin-left: 100px; width: 320px;}
+    div#mypage-feedback-container p#title { font-size: 18px;}
+    div#mypage-feedback-container p#description { font-size: 14px;color: #999999;}
+    div#mypage-main-image img { width: 400px; height: 300px;}
 
     div#feature-item img {width: 75px; height: 75px;}
     div#feature-item h4 {margin-top: 48px; margin-bottom: 20px;}
     div#post-feed-item { margin-bottom: 20px;}
     div#post-feed-item span#post-title {
       font-size: 18px;
-      width:230px;
+      width:190px;
+      margin-bottom: -5px;
+      display:inline-block;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      -webkit-text-overflow:ellipsis;
+      -o-text-overflow: ellipsis;
+    }
+    div#post-feed-item span#post-content {
+      font-size: 14px;
+      width:190px;
       display:inline-block;
       white-space:nowrap;
       overflow:hidden;

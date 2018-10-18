@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'privacy_policy' => "privacy_policy#index"
   get 'terms' => "terms#index"
+  get 'users/:nickname/posts' => "posts#index"
   get '/users/:nickname/posts/new' => "posts#new"
   post '/users/:nickname/posts/new' => "posts#create"
   get '/users/:nickname/posts/:id/edit' => "posts#edit"

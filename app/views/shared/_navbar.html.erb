@@ -24,7 +24,7 @@
           </div>
         <% end %>
 
-        <div class="nav-item dropdown my-auto">
+        <div class="nav-item dropdown my-auto" id="notification-dropdown">
           <a class="nav-link" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <% if current_user.notifications.where("unread = ?", true).exists? %>
               <span class="badge badge-danger btn" id="notification-button">
@@ -70,19 +70,26 @@
           <% end %>
         </div>
 
-
-        <div class="nav-item dropdown">
+        <div class="nav-item dropdown" id="profile-dropdown">
           <a class="nav-link btn" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img src="<%= current_user[:image] %>" class="rounded-circle" id="profile-image">
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="right: 0; left: auto;">
+            <%= link_to "/users/#{current_user[:nickname]}/posts", class: "dropdown-item" do %>
+              マイページ
+            <% end %>
             <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
               ログアウト
             <% end %>
           </div>
         </div>
       </div>
-
+    <% else %>
+      <%= link_to user_twitter_omniauth_authorize_path do %>
+        <div class="btn font-weight-bold" id="navbar-login-button">
+          Twitterでログイン
+        </div>
+      <% end %>
     <% end %>
   </div>
 </nav>
