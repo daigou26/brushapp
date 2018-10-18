@@ -5,7 +5,7 @@ class TopController < ApplicationController
     now = Time.current
 
     if feed_type == nil
-      @new_feed_items = Post.order("created_at desc").limit(6)
+      @new_feed_items = Post.limit(6).order("created_at desc")
       @feed_items = Post.where("rating >= ?", 4).limit(6).order("rating desc")
     elsif feed_type.include?("type=rating")
       @feed_items = Post.where("rating >= ?", 4).order("rating desc").page(params[:page]).per(12)
