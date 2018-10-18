@@ -38,6 +38,7 @@ div#notification-page-text div#timestamp { color: #888888; font-size: 12px; marg
 div#content { padding-bottom: 50px;}
 a#navbarDropdownMenuLink { padding: 0px;}
 div#navbar-post-button { padding: 0px; font-size: 14px; color: #555555;}
+div#navbar-login-button { padding: 0px; color: #555555;}
 span#rating { margin-right: 2px; font-size: 12px; color: #1C9B81;}
 span#rating-count { margin-left: 5px; font-size: 12px; color: #888888;}
 p#rating-count { font-size: 14px;}
@@ -61,6 +62,8 @@ div#edit-post { font-size: 14px;}
     // navbar
     #notification-dropdown .dropdown-menu { width: 200px;}
     div#navbar-post-button { font-size: 12px;}
+    div#navbar-login-button { font-size: 14px; color: #555555;}
+
     span#notification-button {
       padding: 8px;
       margin-left: 10px;
@@ -73,7 +76,6 @@ div#edit-post { font-size: 14px;}
       // max-width: 120px;
     }
     // mypage
-
     div#main-container { margin-top: 50px; margin-bottom: 50px;}
     p#description { font-size: 10pt; margin-top: 40px;}
 
@@ -448,11 +450,20 @@ div#edit-post { font-size: 14px;}
     }
 
     // top-page
-
+    #top-page div#main-container { margin-top: 50px; margin-bottom: 50px;}
+    #top-page div#text-content-container { width: 600px;}
+    #top-page p#description { font-size: 12pt; margin-top: 50px;}
+    #top-page div#main-container-button {
+      font-size: 14px;
+      margin-top: 40px;
+      border-radius: 20px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
 
     // mypage
     div#main-container { margin-top: 100px; margin-bottom: 120px;}
-    div#mypage-text-content div#mypage-text-content-container { width: 550px;}
+    div#mypage-text-content div#mypage-text-content-container { width: 600px;}
     p#description { font-size: 12pt; margin-top: 50px;}
     div#main-container-button {
       font-size: 14px;

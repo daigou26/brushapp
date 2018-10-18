@@ -70,7 +70,6 @@
           <% end %>
         </div>
 
-
         <div class="nav-item dropdown" id="profile-dropdown">
           <a class="nav-link btn" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img src="<%= current_user[:image] %>" class="rounded-circle" id="profile-image">
@@ -85,7 +84,12 @@
           </div>
         </div>
       </div>
-
+    <% else %>
+      <%= link_to user_twitter_omniauth_authorize_path do %>
+        <div class="btn font-weight-bold" id="navbar-login-button">
+          Twitterでログイン
+        </div>
+      <% end %>
     <% end %>
   </div>
 </nav>

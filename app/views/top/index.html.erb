@@ -1,4 +1,13 @@
-<div class="container-fluid" style="background-color: #eeeeee;">
+<% feed_type = request.fullpath.split("/").last %>
+<% if feed_type == nil %>
+<%   feed_type = "top" %>
+<% elsif feed_type.include?("type=rating") %>
+<%   feed_type = "rating" %>
+<% elsif feed_type.include?("type=new") %>
+<%   feed_type = "new" %>
+<% end %>
+
+<div class="container-fluid">
   <%= render 'shared/navbar' %>
 
   <div class="container-fluid p-0" id="top-page">
@@ -14,35 +23,92 @@
           <!-- ピックアップ -->
         </div>
         <div class="col-md-8">
-          <% if @feed_items.any?  %>
-            <div class="container p-0">
-              <p class="font-weight-bold mt-3" style="font-size: 20px;">
-                評価が高いプロダクト
-              </p>
-              <div class="row align-self-stretch">
-                <% @feed_items.each do |post| %>
-                  <%= render partial: "feed", :locals => {:post => post, :type => "rating"} %>
-                <% end %>
-              </div>
-              <div class="mb-5">
-                すべて見る
+          <% if feed_type == "top" %>
+            <div class="container-fluid" id="main-container">
+                <div class="my-auto mx-auto">
+                  <div class="container p-0" id="text-content-container">
+                    <h3 class="text-center font-weight-bold">フィードバックをもらってより良いプロダクトを作ろう</h3>
+                    <p class="text-center" id="description">
+                      プロダクトを簡単にSNSにシェアでき、<br />もらったフィードバックを管理できます
+                    </p>
+                    <div class="text-center">
+                      <% if user_signed_in? %>
+                        <%= link_to "/users/#{current_user[:nickname]}/posts/new" do %>
+                          <div class="btn btn-info" id="main-container-button">
+                            投稿する
+                          </div>
+                        <% end %>
+                      <% else %>
+                        <%= link_to user_twitter_omniauth_authorize_path do %>
+                          <div class="btn btn-info" id="main-container-button">
+                            Twitterでログイン
+                          </div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
               </div>
             </div>
 
-          <% end %>
-          <% if @feed_items.any?  %>
+            <hr class="m-0"/>
+
+            <% if @feed_items.any?  %>
+              <div class="container p-0">
+                <p class="font-weight-bold mt-3" style="font-size: 20px;">
+                  評価が高いプロダクト
+                </p>
+                <div class="row align-self-stretch">
+                  <% @feed_items.each do |post| %>
+                    <%= render partial: "feed", :locals => {:post => post, :type => "rating"} %>
+                  <% end %>
+                </div>
+                <div class="mb-5">
+                  <a href="?type=rating" class="font-weight-bold" style="color: #1EA1B3;">高評価のプロダクトをすべて見る ＞</a>
+                </div>
+              </div>
+            <% end %>
+            <% if @feed_items.any?  %>
+              <div class="container p-0">
+                <p class="font-weight-bold mt-3" style="font-size: 20px;">
+                  新着
+                </p>
+                <div class="row align-self-stretch">
+                  <% @new_feed_items.each do |post| %>
+                    <%= render partial: "feed", :locals => {:post => post, :type => "new"} %>
+                  <% end %>
+                </div>
+                <div class="mb-5">
+                  <a href="?type=new" class="font-weight-bold" style="color: #1EA1B3;">新着のプロダクトをすべて見る ＞</a>
+                </div>
+              </div>
+            <% end %>
+          <% else%>
             <div class="container p-0">
-              <p class="font-weight-bold mt-3" style="font-size: 20px;">
-                新着
-              </p>
-              <div class="row align-self-stretch">
-                <% @new_feed_items.each do |post| %>
-                  <%= render partial: "feed", :locals => {:post => post, :type => "new"} %>
+              <% if @feed_items.any? %>
+                <% if feed_type == "rating" %>
+                  <p class="font-weight-bold mt-3" style="font-size: 20px;">
+                    評価が高いプロダクト
+                  </p>
+                <% elsif feed_type == "new" %>
+                  <p class="font-weight-bold mt-3" style="font-size: 20px;">
+                    新着
+                  </p>
                 <% end %>
-              </div>
-              <div class="mb-5">
-                すべて見る
-              </div>
+                <div class="row align-self-stretch">
+                  <% @feed_items.each do |post| %>
+                    <%= render partial: "feed", :locals => {:post => post, :type => "rating"} %>
+                  <% end %>
+                </div>
+                <div class="mb-5">
+                  <%= paginate @feed_items %>
+                </div>
+              <% else %>
+                <div class="container p-0 text-center">
+                  <p class="mt-5" style="font-size: 20px; color: #888888;">
+                    プロダクトがありません
+                  </p>
+                </div>
+              <% end %>
             </div>
           <% end %>
         </div>
