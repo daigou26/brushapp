@@ -10,6 +10,10 @@ class TopController < ApplicationController
       @feed_items = Post.where("rating >= ?", 4).order("rating desc").limit(60).page(params[:page]).per(12)
     elsif feed_type.include?("type=new")
       @feed_items = Post.order("created_at desc").limit(60).page(params[:page]).per(12)
+    else
+      @feed_items = Post.where("rating >= ?", 4).order("rating desc").limit(6)
+      @new_feed_items = Post.order("created_at desc").limit(6)
+      logger.debug("________________________________top_feed_type:#{feed_type}")
     end
   end
 end
