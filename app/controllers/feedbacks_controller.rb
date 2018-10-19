@@ -41,8 +41,12 @@ class FeedbacksController < ApplicationController
         @post.rating_count = @post.rating_count + 1
       end
 
-      if @feedback.content != nil
+      if @feedback.content != nil && @feedback.content != ""
         @post.review_count = @post.review_count + 1
+
+        # レビューした人にはポイントをつける
+        current_user.point = current_user.point + 1
+        current_user.save
       end
 
       @notification = User.find(@post.user_id).notifications.build
