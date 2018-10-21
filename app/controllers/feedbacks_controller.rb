@@ -57,6 +57,8 @@ class FeedbacksController < ApplicationController
 
   def create
     @feedback = current_user.feedbacks.build(feedback_params)
+    @feedback.feedback_type = "all" if @feedback.feedback_type == nil
+
     @feedback.post_id = params[:id]
     @post = Post.find(params[:id])
     if @feedback.save
@@ -98,6 +100,6 @@ class FeedbacksController < ApplicationController
 
   private
     def feedback_params
-      params.require(:feedback).permit(:content, :rating, :feedback_type)
+      params.require(:feedback).permit(:content, :rating, :feedback_type, :status)
     end
 end
