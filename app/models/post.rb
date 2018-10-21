@@ -12,17 +12,53 @@ class Post < ApplicationRecord
     Feedback.where("post_id = ?", id).order("created_at desc")
   end
 
+  def high_rating_feed
+    Feedback.where("post_id = ?", id).order("rating desc")
+  end
+
+  def low_rating_feed
+    Feedback.where("post_id = ?", id).order("rating asc")
+  end
+
+  # request feedback
   def request_feed
     Feedback.where("post_id = ? and feedback_type = ?", id, "request").order("created_at desc")
   end
 
+  def high_rating_request_feed
+    Feedback.where("post_id = ? and feedback_type = ?", id, "request").order("rating desc")
+  end
+
+  def low_rating_request_feed
+    Feedback.where("post_id = ? and feedback_type = ?", id, "request").order("rating asc")
+  end
+
+  # question feedback
   def question_feed
     Feedback.where("post_id = ? and feedback_type = ?", id, "question").order("created_at desc")
   end
 
+  def high_rating_question_feed
+    Feedback.where("post_id = ? and feedback_type = ?", id, "question").order("rating desc")
+  end
+
+  def low_rating_question_feed
+    Feedback.where("post_id = ? and feedback_type = ?", id, "question").order("rating asc")
+  end
+
+  # thought feedback
   def thought_feed
     Feedback.where("post_id = ? and feedback_type = ?", id, "thought").order("created_at desc")
   end
+
+  def high_rating_thought_feed
+    Feedback.where("post_id = ? and feedback_type = ?", id, "thought").order("rating desc")
+  end
+
+  def low_rating_thought_feed
+    Feedback.where("post_id = ? and feedback_type = ?", id, "thought").order("rating asc")
+  end
+
 
   private
 

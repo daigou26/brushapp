@@ -13,17 +13,42 @@ class FeedbacksController < ApplicationController
         end
         @post.save
 
-        # tab切り替え
-        feedback_type = request.fullpath.split("/").last
+        # tab,sort切り替え
+        current_url = request.fullpath.split("/").last
+        feedback_type = ""
 
-        if feedback_type.include?("type=request")
-          @feed_items = @post.request_feed.page(params[:page]).per(10)
-        elsif feedback_type.include?("type=question")
-          @feed_items = @post.question_feed.page(params[:page]).per(10)
-        elsif feedback_type.include?("type=thought")
-          @feed_items = @post.thought_feed.page(params[:page]).per(10)
+        if current_url.include?("type=request")
+          if current_url.include?("sort=high_rating")
+            @feed_items = @post.high_rating_request_feed.page(params[:page]).per(10)
+          elsif current_url.include?("sort=low_rating")
+            @feed_items = @post.low_rating_request_feed.page(params[:page]).per(10)
+          else
+            @feed_items = @post.request_feed.page(params[:page]).per(10)
+          end
+        elsif current_url.include?("type=question")
+          if current_url.include?("sort=high_rating")
+            @feed_items = @post.high_rating_question_feed.page(params[:page]).per(10)
+          elsif current_url.include?("sort=low_rating")
+            @feed_items = @post.low_rating_question_feed.page(params[:page]).per(10)
+          else
+            @feed_items = @post.question_feed.page(params[:page]).per(10)
+          end
+        elsif current_url.include?("type=thought")
+          if current_url.include?("sort=high_rating")
+            @feed_items = @post.high_rating_thought_feed.page(params[:page]).per(10)
+          elsif current_url.include?("sort=low_rating")
+            @feed_items = @post.low_rating_thought_feed.page(params[:page]).per(10)
+          else
+            @feed_items = @post.thought_feed.page(params[:page]).per(10)
+          end
         else
-          @feed_items = @post.feed.page(params[:page]).per(10)
+          if current_url.include?("sort=high_rating")
+            @feed_items = @post.high_rating_feed.page(params[:page]).per(10)
+          elsif current_url.include?("sort=low_rating")
+            @feed_items = @post.low_rating_feed.page(params[:page]).per(10)
+          else
+            @feed_items = @post.feed.page(params[:page]).per(10)
+          end
         end
 
       end

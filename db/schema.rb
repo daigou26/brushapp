@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_19_040742) do
+ActiveRecord::Schema.define(version: 2018_10_21_060556) do
 
   create_table "feedbacks", force: :cascade do |t|
     t.text "content"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 2018_10_19_040742) do
     t.index ["post_id", "created_at"], name: "index_feedbacks_on_post_id_and_created_at"
     t.index ["post_id", "feedback_type", "created_at"], name: "feedbacks_created_at_index", order: { created_at: :desc }
     t.index ["post_id", "feedback_type", "priority_value"], name: "feedbacks_priority_index", order: { priority_value: :desc }
+    t.index ["post_id", "feedback_type", "rating"], name: "feedbacks_rating_index", order: { rating: :desc }
+    t.index ["post_id", "rating"], name: "index_feedbacks_on_post_id_and_rating", order: { rating: :desc }
     t.index ["post_id"], name: "index_feedbacks_on_post_id"
     t.index ["user_id"], name: "index_feedbacks_on_user_id"
   end
