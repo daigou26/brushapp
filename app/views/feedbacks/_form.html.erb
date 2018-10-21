@@ -7,19 +7,35 @@
       <div class="row">
         <div class="container mt-3 mb-3">
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-outline-info btn-sm active">
+            <label class="btn btn-outline-info btn-sm active" style="outline: none !important; box-shadow: none;">
+              <%= f.radio_button :status, "private", :class => "form-check-input" %>
+              非公開
+            </label>
+            <label class="btn btn-outline-info btn-sm" style="outline: none !important; box-shadow: none;">
+              <%= f.radio_button :status, "public", :class => "form-check-input" %>
+              公開
+            </label>
+          </div>
+          <div class="text-secondary mt-1" style="font-size: 14px;">
+            ※非公開の場合、他のユーザーには公開されません
+          </div>
+        </div>
+
+        <div class="container mt-2 mb-3">
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-outline-info btn-sm active" style="outline: none !important; box-shadow: none;">
               <%= f.radio_button :feedback_type, "all", :class => "form-check-input" %>
               All
             </label>
-            <label class="btn btn-outline-info btn-sm">
+            <label class="btn btn-outline-info btn-sm" style="outline: none !important; box-shadow: none;">
               <%= f.radio_button :feedback_type, "request", :class => "form-check-input" %>
               要望
             </label>
-            <label class="btn btn-outline-info btn-sm">
+            <label class="btn btn-outline-info btn-sm" style="outline: none !important; box-shadow: none;">
               <%= f.radio_button :feedback_type, "question", :class => "form-check-input" %>
               質問
             </label>
-            <label class="btn btn-outline-info btn-sm">
+            <label class="btn btn-outline-info btn-sm" style="outline: none !important; box-shadow: none;">
               <%= f.radio_button :feedback_type, "thought", :class => "form-check-input" %>
               感想
             </label>
