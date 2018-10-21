@@ -1,14 +1,23 @@
 <!-- 変数定義 -->
 <% user = User.find(@post.user_id) %>
-<% feedback_type = request.fullpath.split("/").last %>
-<% if feedback_type.include?("type=request") %>
+<% current_url = request.fullpath.split("/").last %>
+<% feedback_type = "" %>
+<% sort_type = "" %>
+<% if current_url.include?("type=request") %>
 <%   feedback_type = "request" %>
-<% elsif feedback_type.include?("type=question") %>
+<% elsif current_url.include?("type=question") %>
 <%   feedback_type = "question" %>
-<% elsif feedback_type.include?("type=thought") %>
+<% elsif current_url.include?("type=thought") %>
 <%   feedback_type = "thought" %>
 <% else %>
 <%   feedback_type = "feedbacks" %>
+<% end %>
+<% if current_url.include?("sort=high_rating") %>
+<%   sort_type = "high_rating" %>
+<% elsif current_url.include?("sort=low_rating") %>
+<%   sort_type = "low_rating" %>
+<% else %>
+<%   sort_type = "newest" %>
 <% end %>
 
 <% set_meta_tags title: @post.title, description: @post.content,
@@ -43,6 +52,67 @@ twitter: { title: @post.title, description: @post.content, image: @post.image.ur
             Feedback
           </span>
         </a>
+        <div class="container mt-2 p-0" id="feedback-sort-container">
+          <p id="sort-text">
+            Sort
+          </p>
+          <% if sort_type == "newest" %>
+            <a href="" id="feedback-sort">
+              <img src="<%= asset_path "checked-circle.png" %>" id="icon">
+              <span class="align-middle" style="color: #ffffff;">
+                新着
+              </span>
+            </a>
+          <% else %>
+            <% path = current_url.sub(/.sort=.+/, "") %>
+            <a href="<%= path %>" id="feedback-sort">
+              <img src="<%= asset_path "circle.png" %>" id="icon">
+              <span class="align-middle" id="not-selected-text">
+                新着
+              </span>
+            </a>
+          <% end %>
+          <% if sort_type == "high_rating" %>
+            <a href="" id="feedback-sort">
+              <img src="<%= asset_path "checked-circle.png" %>" id="icon">
+              <span class="align-middle" style="color: #ffffff;">
+                高評価
+              </span>
+            </a>
+          <% else %>
+            <% if feedback_type == "feedbacks" %>
+              <% path = "#{current_url.sub(/.sort.+/, "")}?sort=high_rating" %>
+            <% else %>
+              <% path = "#{current_url.sub(/.sort.+/, "")}&sort=high_rating" %>
+            <% end %>
+            <a href="<%= path %>" id="feedback-sort">
+              <img src="<%= asset_path "circle.png" %>" id="icon">
+              <span class="align-middle" id="not-selected-text">
+                高評価
+              </span>
+            </a>
+          <% end %>
+          <% if sort_type == "low_rating" %>
+            <a href="" id="feedback-sort">
+              <img src="<%= asset_path "checked-circle.png" %>" id="icon">
+              <span class="align-middle" style="color: #ffffff;">
+                低評価
+              </span>
+            </a>
+          <% else %>
+            <% if feedback_type == "feedbacks" %>
+              <% path = "#{current_url.sub(/.sort.+/, "")}?sort=low_rating" %>
+            <% else %>
+              <% path = "#{current_url.sub(/.sort.+/, "")}&sort=low_rating" %>
+            <% end %>
+            <a href="<%= path %>" id="feedback-sort">
+              <img src="<%= asset_path "circle.png" %>" id="icon">
+              <span class="align-middle" id="not-selected-text">
+                低評価
+              </span>
+            </a>
+          <% end %>
+        </div>
       </div>
 
       <!-- Page Content -->
@@ -61,25 +131,61 @@ twitter: { title: @post.title, description: @post.content, image: @post.image.ur
             <% if feedback_type == "feedbacks" %>
               <div class="nav-item nav-link active" style="color: #1EA1B3;" id="nav-all-tab" role="tab">All</div>
             <% else %>
-              <a class="nav-item nav-link" style="color: #000000;" id="nav-all-tab" href="/users/<%= current_user[:nickname] %>/posts/<%= @post.id %>/feedbacks" role="tab">All</a>
+              <% path = "" %>
+              <% if sort_type == "newest" %>
+                <% path = current_url.sub(/.type.+/, "") %>
+              <% else %>
+                <% path = current_url.sub(/type.+&/, "") %>
+              <% end %>
+              <a class="nav-item nav-link" style="color: #000000;" id="nav-all-tab" href="<%= path %>" role="tab">All</a>
             <% end %>
 
             <% if feedback_type == "request" %>
               <div class="nav-item nav-link active" style="color: #1EA1B3;" id="nav-request-tab" role="tab">リクエスト</div>
             <% else %>
-              <a class="nav-item nav-link" style="color: #000000;" id="nav-request-tab" href="/users/<%= current_user[:nickname] %>/posts/<%= @post.id %>/feedbacks?type=request" role="tab">リクエスト</a>
+              <% path = "" %>
+              <% if sort_type == "newest" %>
+                <% path = "#{current_url.sub(/\?type.+/, "")}?type=request" %>
+              <% else %>
+                <% if feedback_type == "feedbacks" %>
+                  <% path = current_url.sub(/\?/, "?type=request&") %>
+                <% else %>
+                  <% path = current_url.sub(/type.+&/, "type=request&") %>
+                <% end %>
+              <% end %>
+              <a class="nav-item nav-link" style="color: #000000;" id="nav-request-tab" href="<%= path %>" role="tab">リクエスト</a>
             <% end %>
 
             <% if feedback_type == "question" %>
               <div class="nav-item nav-link active" style="color: #1EA1B3;" id="nav-question-tab" role="tab">質問</div>
             <% else %>
-              <a class="nav-item nav-link" style="color: #000000;" id="nav-question-tab" href="/users/<%= current_user[:nickname] %>/posts/<%= @post.id %>/feedbacks?type=question" role="tab">質問</a>
+              <% path = "" %>
+              <% if sort_type == "newest" %>
+                <% path = "#{current_url.sub(/\?type.+/, "")}?type=question" %>
+              <% else %>
+                <% if feedback_type == "feedbacks" %>
+                  <% path = current_url.sub(/\?/, "?type=question&") %>
+                <% else %>
+                  <% path = current_url.sub(/type.+&/, "type=question&") %>
+                <% end %>
+              <% end %>
+              <a class="nav-item nav-link" style="color: #000000;" id="nav-question-tab" href="<%= path %>" role="tab">質問</a>
             <% end %>
 
             <% if feedback_type == "thought" %>
               <div class="nav-item nav-link active" style="color: #1EA1B3;" id="nav-thought-tab" role="tab">感想</div>
             <% else %>
-              <a class="nav-item nav-link" style="color: #000000;" id="nav-thought-tab" href="/users/<%= current_user[:nickname] %>/posts/<%= @post.id %>/feedbacks?type=thought" role="tab">感想</a>
+              <% path = "" %>
+              <% if sort_type == "newest" %>
+                <% path = "#{current_url.sub(/\?type.+/, "")}?type=thought" %>
+              <% else %>
+                <% if feedback_type == "feedbacks" %>
+                  <% path = current_url.sub(/\?/, "?type=thought&") %>
+                <% else %>
+                  <% path = current_url.sub(/type.+&/, "type=thought&") %>
+                <% end %>
+              <% end %>
+              <a class="nav-item nav-link" style="color: #000000;" id="nav-thought-tab" href="<%= path %>" role="tab">感想</a>
             <% end %>
           </div>
         </nav>
